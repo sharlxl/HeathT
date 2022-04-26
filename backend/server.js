@@ -1,6 +1,7 @@
 const express = require("express");
 const connectDB = require("./db/db");
 const users = require("./router/users");
+const allergies = require("./router/allergies");
 
 const router = express();
 
@@ -36,6 +37,7 @@ connectDB(process.env.MONGODB_URI);
 // });
 
 router.use("/users", users);
+router.use("/allergies", allergies);
 
 const PORT = process.env.PORT || 5001;
 router.listen(PORT, () => {
