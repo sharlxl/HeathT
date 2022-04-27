@@ -1,6 +1,6 @@
 const express = require("express");
 const Allergy = require("../models/Allergy");
-const Users = require("../models/User");
+const User = require("../models/User");
 const router = express.Router();
 
 const errorFormatter = (e) => {
@@ -18,7 +18,7 @@ const errorFormatter = (e) => {
 router.post("/new", async (req, res) => {
   try {
     const allergy = await Allergy.create(req.body.allergy);
-    await Users.updateOne(
+    await User.updateOne(
       { user_id: req.body.user_id },
       { $push: { allergies: allergy } }
     );
@@ -32,24 +32,33 @@ router.post("/new", async (req, res) => {
   }
 });
 
-// router.delete("/delete", async (req, res) => {
-//   try {
-//     const { user_id } = req.body;
-//     const deleteUser = await User.deleteOne({ user_id });
-//     console.log(deleteUser);
-//     if (deleteUser.deletedCount === 1) {
-//       res.json({ status: "ok", message: "user deleted" });
-//     } else {
-//       res.json({
-//         message: "unable to delete user",
-//       });
-//     }
-//   } catch (error) {
-//     console.log(error);
-//     res.status(401).json({
-//       message: "something went wrong",
-//     });
-//   }
-// });
+router.delete("/delete", async (req, res) => {
+  try {
+    const deleteAllergyFromUser = await User.updateOne(
+      { user_id: req.body.user_id },
+      { $pull: { allergies: { allergy_id: req.body.allergy_id } } }
+    );
+    const deleteAllergy = await Allergy.deleteOne({
+      allergy_id: req.body.allergy_id,
+    });
+    if (
+      deleteAllergyFromUser.modifiedCount === 1 &&
+      deleteAllergy.deletedCount === 1
+    ) {
+      res.json({ status: "ok", message: "allergy deleted" });
+    } else {
+      res.json({
+        message: "something went wrong",
+        debugInfo: "unable to delete allergy",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(401).json({
+      message: "something went wrong",
+      debugInfo: error.message,
+    });
+  }
+});
 
 module.exports = router;
