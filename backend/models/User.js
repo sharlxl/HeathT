@@ -37,7 +37,7 @@ const UserSchema = new Schema({
       symptoms: [{ type: String, required: [true, "Symptom is required."] }],
     },
   ],
-  medical_condition: [
+  medical_conditions: [
     {
       condition_id: { type: String, required: true, unique: true },
       condition: { type: String, required: [true, "Condition is required."] },

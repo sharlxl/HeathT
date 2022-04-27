@@ -14,7 +14,12 @@ const errorFormatter = (e) => {
   return errors;
 };
 
-/////////////////////////////////////////USER
+/** users */
+router.get("/profile", async (req, res) => {
+  const userProfile = await User.find({});
+  res.json(userProfile);
+});
+
 router.post("/create", async (req, res) => {
   try {
     await User.create(req.body);
@@ -48,7 +53,8 @@ router.delete("/delete", async (req, res) => {
   }
 });
 
-////////////////////////////////////////ALLERGIES
+/** allergies */
+
 router.post("/allergies/new", async (req, res) => {
   try {
     await User.updateOne(
@@ -119,6 +125,25 @@ router.put("/allergies/edit", async (req, res) => {
     res.json({
       message: "something went wrong",
       debugInfo: errorFormatter(error.errors.allergies.message),
+    });
+  }
+});
+
+/** condition */
+router.post("/conditions/new", async (req, res) => {
+  try {
+    await User.updateOne(
+      { user_id: req.body.user_id },
+      { $push: { medical_conditions: req.body.condition } },
+      { runValidators: true }
+    );
+    // pushes the created allergy into the allergies array in the user info.
+    res.json({ status: "ok", message: "condition created" });
+  } catch (error) {
+    console.log(error);
+    res.status(401).json({
+      message: "something went wrong with creating condition",
+      debugInfo: errorFormatter(error.errors.medical_conditions.message),
     });
   }
 });
