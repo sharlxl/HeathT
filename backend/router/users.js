@@ -148,4 +148,27 @@ router.post("/conditions/new", async (req, res) => {
   }
 });
 
+router.delete("/conditions/delete", async (req, res) => {
+  try {
+    const deleteConditionFromUser = await User.updateOne(
+      { user_id: req.body.user_id },
+      { $pull: { medical_conditions: { condition_id: req.body.condition_id } } }
+    );
+    if (deleteConditionFromUser.modifiedCount === 1) {
+      res.json({ status: "ok", message: "medical condition deleted" });
+    } else {
+      res.json({
+        message: "something went wrong with deleting medical condition",
+        debugInfo: "unable to delete medical condition",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(401).json({
+      message: "something went wrong",
+      debugInfo: errorFormatter(error.errors.medical_conditions.message),
+    });
+  }
+});
+
 module.exports = router;
