@@ -13,9 +13,9 @@ seedUsers = [
       },
     ],
 
-    medical_history: [
+    medical_condition: [
       {
-        conditions_id: 3,
+        condition_id: 3,
         condition: "Diabetes",
         date_of_diagnosis: "2007-04-25T15:40:50.776Z",
       },

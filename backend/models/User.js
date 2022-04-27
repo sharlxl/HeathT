@@ -29,9 +29,34 @@ const UserSchema = new Schema({
       message: `Passwords don't match.`,
     },
   },
-  allergies: { type: Array },
-  medical_history: { type: Array },
-  records: { type: Array },
+  allergies: [
+    {
+      allergy_id: { type: String, required: true, unique: true },
+      name: { type: String, required: [true, "Name is required."] },
+      date: { type: Date },
+      symptoms: [{ type: String, required: [true, "Symptom is required."] }],
+    },
+  ],
+  medical_condition: [
+    {
+      condition_id: { type: String, required: true, unique: true },
+      condition: { type: String, required: [true, "Condition is required."] },
+      date_of_diagnosis: { type: Date },
+    },
+  ],
+  records: [
+    {
+      records_id: { type: String, required: true, unique: true },
+      date: { type: Date },
+      time: { type: Date },
+      description: {
+        type: String,
+        required: [true, "description is required."],
+      },
+      pain_score: { type: String },
+      trigger: { type: String },
+    },
+  ],
 });
 
 const User = mongoose.model("User", UserSchema);
