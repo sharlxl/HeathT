@@ -171,4 +171,35 @@ router.delete("/conditions/delete", async (req, res) => {
   }
 });
 
+router.put("/conditions/edit", async (req, res) => {
+  try {
+    const updateCondition = await User.updateOne(
+      {
+        user_id: req.body.user_id,
+        "medical_conditions.condition_id": req.body.condition_id,
+      },
+      {
+        $set: {
+          "medical_conditions.$.condition": req.body.condition,
+          "medical_conditions.$.date": req.body.date,
+        },
+      }
+    );
+    if (updateCondition.modifiedCount === 1) {
+      res.json({ status: "ok", message: "medical condition edited" });
+    } else {
+      res.json({
+        message: "something went wrong with editing medical condition",
+        debugInfo: "unable to edit medical condition",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.json({
+      message: "something went wrong",
+      debugInfo: errorFormatter(error.errors.medical_conditions.message),
+    });
+  }
+});
+
 module.exports = router;
