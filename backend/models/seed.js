@@ -54,7 +54,7 @@ seedUsers = [
         trigger: "While sleeping",
       },
       {
-        record_id: "5",
+        record_id: "7",
         date: "2022-05-01T15:40:50.776Z",
         time: "2022-05-01T15:40:50.776Z",
         description:

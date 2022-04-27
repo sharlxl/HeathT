@@ -46,7 +46,7 @@ const UserSchema = new Schema({
   ],
   records: [
     {
-      records_id: { type: String, required: true, unique: true },
+      record_id: { type: String, required: true, unique: true },
       date: { type: Date },
       time: { type: Date },
       description: {
