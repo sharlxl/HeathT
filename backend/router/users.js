@@ -16,7 +16,7 @@ const errorFormatter = (e) => {
 
 router.post("/create", async (req, res) => {
   try {
-    const newUser = await User.create(req.body);
+    await User.create(req.body);
     res.json({ status: "ok", message: "user created" });
   } catch (error) {
     console.log(error);
