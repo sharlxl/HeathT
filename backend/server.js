@@ -1,6 +1,8 @@
 const express = require("express");
 const connectDB = require("./db/db");
 const users = require("./router/users");
+const records = require("./router/records");
+const conditions = require("./router/conditions");
 const allergies = require("./router/allergies");
 
 const router = express();
@@ -21,7 +23,7 @@ connectDB(process.env.MONGODB_URI);
 // const Users = require("./models/Users");
 // // const User = require('./models/users.js');
 
-// app.get("/seedData", async (req, res) => {
+// router.get("/seedData", async (req, res) => {
 //   await Users.deleteMany({});
 //   // encrypts the given seed passwords
 //   await seed.forEach((user) => {
@@ -38,6 +40,8 @@ connectDB(process.env.MONGODB_URI);
 
 router.use("/users", users);
 router.use("/allergies", allergies);
+router.use("/conditions", conditions);
+router.use("/records", records);
 
 const PORT = process.env.PORT || 5001;
 router.listen(PORT, () => {

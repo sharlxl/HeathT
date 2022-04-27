@@ -18,72 +18,70 @@ router.post("/new", async (req, res) => {
   try {
     await User.updateOne(
       { user_id: req.body.user_id },
-      { $push: { allergies: req.body.allergy } },
+      { $push: { medical_conditions: req.body.condition } },
       { runValidators: true }
     );
     // pushes the created allergy into the allergies array in the user info.
-    res.json({ status: "ok", message: "allergy created" });
+    res.json({ status: "ok", message: "condition created" });
   } catch (error) {
     console.log(error);
     res.status(401).json({
-      message: "something went wrong with creating allergy",
-      debugInfo: errorFormatter(error.errors.allergies.message),
+      message: "something went wrong with creating condition",
+      debugInfo: errorFormatter(error.errors.medical_conditions.message),
     });
   }
 });
 
 router.delete("/delete", async (req, res) => {
   try {
-    const deleteAllergyFromUser = await User.updateOne(
+    const deleteConditionFromUser = await User.updateOne(
       { user_id: req.body.user_id },
-      { $pull: { allergies: { allergy_id: req.body.allergy_id } } }
+      { $pull: { medical_conditions: { condition_id: req.body.condition_id } } }
     );
-    if (deleteAllergyFromUser.modifiedCount === 1) {
-      res.json({ status: "ok", message: "allergy deleted" });
+    if (deleteConditionFromUser.modifiedCount === 1) {
+      res.json({ status: "ok", message: "medical condition deleted" });
     } else {
       res.json({
-        message: "something went wrong with deleting allergy",
-        debugInfo: "unable to delete allergy",
+        message: "something went wrong with deleting medical condition",
+        debugInfo: "unable to delete medical condition",
       });
     }
   } catch (error) {
     console.log(error);
     res.status(401).json({
       message: "something went wrong",
-      debugInfo: errorFormatter(error.errors.allergies.message),
+      debugInfo: errorFormatter(error.errors.medical_conditions.message),
     });
   }
 });
 
 router.put("/edit", async (req, res) => {
   try {
-    // finds user by id (based on current logged in user )
-    const updateAllergy = await User.updateOne(
+    const updateCondition = await User.updateOne(
       {
         user_id: req.body.user_id,
-        "allergies.allergy_id": req.body.allergy_id,
+        "medical_conditions.condition_id": req.body.condition_id,
       },
       {
         $set: {
-          "allergies.$.name": req.body.name,
-          "allergies.$.date": req.body.date,
-          "allergies.$.symptoms": req.body.symptoms,
+          "medical_conditions.$.condition": req.body.condition,
+          "medical_conditions.$.date": req.body.date,
         },
       }
     );
-    if (updateAllergy.modifiedCount === 1) {
-      res.json({ status: "ok", message: "allergy edited" });
+    if (updateCondition.modifiedCount === 1) {
+      res.json({ status: "ok", message: "medical condition edited" });
     } else {
       res.json({
-        message: "something went wrong with editing allergy",
-        debugInfo: "unable to edit allergy",
+        message: "something went wrong with editing medical condition",
+        debugInfo: "unable to edit medical condition",
       });
     }
   } catch (error) {
     console.log(error);
     res.json({
       message: "something went wrong",
-      debugInfo: errorFormatter(error.errors.allergies.message),
+      debugInfo: errorFormatter(error.errors.medical_conditions.message),
     });
   }
 });

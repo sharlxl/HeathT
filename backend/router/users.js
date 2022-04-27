@@ -14,14 +14,20 @@ const errorFormatter = (e) => {
   return errors;
 };
 
+/** users */
+router.get("/profile", async (req, res) => {
+  const userProfile = await User.find({});
+  res.json(userProfile);
+});
+
 router.post("/create", async (req, res) => {
   try {
-    const newUser = await User.create(req.body);
+    await User.create(req.body);
     res.json({ status: "ok", message: "user created" });
   } catch (error) {
     console.log(error);
     res.status(401).json({
-      message: "something went wrong",
+      message: "something went wrong with creating user",
       debugInfo: errorFormatter(error.message),
     });
   }
@@ -42,7 +48,7 @@ router.delete("/delete", async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(401).json({
-      message: "something went wrong",
+      message: "something went wrong with deleting",
     });
   }
 });
