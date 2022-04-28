@@ -1,6 +1,7 @@
 const express = require("express");
 const User = require("../models/User");
 const router = express.Router();
+const bcrypt = require("bcrypt");
 
 const errorFormatter = (e) => {
   // "User validation failed: name: Name may only have letters and numbers., password: Password should be at least 8 characters, confirmPassword: Please retype your password."
@@ -22,6 +23,7 @@ router.get("/profile", async (req, res) => {
 
 router.post("/create", async (req, res) => {
   try {
+    req.body.password = await bcrypt.hash(req.body.password, 12);
     await User.create(req.body);
     res.json({ status: "ok", message: "user created" });
   } catch (error) {

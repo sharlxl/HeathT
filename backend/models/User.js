@@ -19,16 +19,16 @@ const UserSchema = new Schema({
     required: [true, "Password is required."],
     minLength: [8, "Password should be at least 8 characters"],
   },
-  confirmPassword: {
-    type: String,
-    required: [true, "Please retype your password."],
-    validate: {
-      validator: function (el) {
-        return el === this.password;
-      },
-      message: `Passwords don't match.`,
-    },
-  },
+  // confirmPassword: {
+  //   type: String,
+  //   required: [true, "Please retype your password."],
+  //   validate: {
+  //     validator: function (el) {
+  //       return el === this.password;
+  //     },
+  //     message: `Passwords don't match.`,
+  //   },
+  // },
   allergies: [
     {
       allergy_id: { type: String, required: true, unique: true },
