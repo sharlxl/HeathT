@@ -2,6 +2,10 @@ const express = require("express");
 const User = require("../models/User");
 const router = express.Router();
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 const errorFormatter = (e) => {
   // "User validation failed: name: Name may only have letters and numbers., password: Password should be at least 8 characters, confirmPassword: Please retype your password."
@@ -24,8 +28,15 @@ router.get("/profile", async (req, res) => {
 router.post("/create", async (req, res) => {
   try {
     req.body.password = await bcrypt.hash(req.body.password, 12);
-    await User.create(req.body);
-    res.json({ status: "ok", message: "user created" });
+    const newUser = await User.create(req.body);
+    if (newUser) {
+      const token = jwt.sign(
+        { user_id: newUser.user_id, name: newUser.name },
+        process.env.TOKEN_SECRET,
+        { expiresIn: "1h" }
+      );
+      res.json({ status: "ok", message: "user created", token: token });
+    }
   } catch (error) {
     console.log(error);
     res.status(401).json({
@@ -54,5 +65,49 @@ router.delete("/delete", async (req, res) => {
     });
   }
 });
+
+router.post("/login", async (req, res) => {
+  try {
+    const { name, password } = req.body;
+    const user = await User.findOne({ name: req.body.name });
+
+    if (!user) {
+      console.log("user null");
+      return res.status(401).json({
+        message: "user does not exist",
+      });
+    }
+
+    const passwordCheck = await bcrypt.compare(password, user.password);
+    if (!passwordCheck) {
+      res.status(401).json({
+        message: "password does not match",
+      });
+    }
+
+    const token = jwt.sign(
+      { user_id: user.user_id, name: user.name },
+      process.env.TOKEN_SECRET,
+      { expiresIn: "1h" }
+    );
+
+    if (user && passwordCheck && token) {
+      res.json({ message: "log in sucessful", user: user, jwt: token });
+    }
+  } catch (error) {
+    res.status(401).json({
+      message: "something went wrong while logging in",
+      debugInfo: errorFormatter(error.message),
+    });
+  }
+});
+
+// router.get("/logout", (req, res) => {
+//   console.log(req.session);
+//   req.session.destroy(() => {
+//     res.json({ status: "ok", message: "logged out" });
+//   });
+//   console.log(req.session);
+// });
 
 module.exports = router;
