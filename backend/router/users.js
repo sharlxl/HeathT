@@ -4,6 +4,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
+const auth = require("../middleware/auth");
 
 dotenv.config();
 
@@ -20,9 +21,12 @@ const errorFormatter = (e) => {
 };
 
 /** users */
-router.get("/profile", async (req, res) => {
-  const userProfile = await User.find({});
-  res.json(userProfile);
+//auth middleware need a req.headers
+//and user_id: req.boday for the user details
+//should i add auth to the rest of the routes? eg allergies...
+router.get("/profile", auth, async (req, res) => {
+  const user = await User.find({ user_id: req.body });
+  res.json(user);
 });
 
 router.post("/create", async (req, res) => {
@@ -34,7 +38,7 @@ router.post("/create", async (req, res) => {
         { user_id: newUser.user_id, name: newUser.name },
         process.env.TOKEN_SECRET,
         { expiresIn: "1h" }
-      );
+      ); // generates a JWT token on creation
       res.json({ status: "ok", message: "user created", token: token });
     }
   } catch (error) {
@@ -71,6 +75,7 @@ router.post("/login", async (req, res) => {
     const { name, password } = req.body;
     const user = await User.findOne({ name: req.body.name });
 
+    //login fail check #1
     if (!user) {
       console.log("user null");
       return res.status(401).json({
@@ -78,6 +83,7 @@ router.post("/login", async (req, res) => {
       });
     }
 
+    //login fail check #2
     const passwordCheck = await bcrypt.compare(password, user.password);
     if (!passwordCheck) {
       res.status(401).json({
@@ -85,6 +91,7 @@ router.post("/login", async (req, res) => {
       });
     }
 
+    //creates a JWT token after passing both checks
     const token = jwt.sign(
       { user_id: user.user_id, name: user.name },
       process.env.TOKEN_SECRET,
