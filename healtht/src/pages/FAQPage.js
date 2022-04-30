@@ -8,7 +8,6 @@ const FAQPage = () => {
       <div className="sm:flex sm:h-full">
         <Header />
         <div className="w-[20rem] sm:w-[30rem] mx-auto sm:ml-[2rem]">
-          <h1>FAQ</h1>
           <FAQAccordion />
         </div>
       </div>
