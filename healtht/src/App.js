@@ -4,6 +4,8 @@ import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import SignUpPage from "./pages/SignUpPage";
 import FAQPage from "./pages/FAQPage";
+import Records from "./pages/Records";
+import Conditions from "./pages/Conditions";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
       <Route path="/main" element={<MainPage />} />
       <Route path="/new" element={<SignUpPage />} />
       <Route path="/faq" element={<FAQPage />} />
+      <Route path="/record" element={<Records />} />
+      <Route path="/conditions" element={<Conditions />} />
     </Routes>
   );
 }
