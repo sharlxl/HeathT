@@ -1,5 +1,6 @@
 const express = require("express");
 const connectDB = require("./db/db");
+const cors = require("cors");
 const users = require("./router/users");
 const records = require("./router/records");
 const conditions = require("./router/conditions");
@@ -37,6 +38,8 @@ connectDB(process.env.MONGODB_URI);
 //     res.redirect("/");
 //   });
 // });
+
+router.use(cors());
 
 router.use("/users", users);
 router.use("/allergies", allergies);

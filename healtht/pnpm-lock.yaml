@@ -8,11 +8,13 @@ specifiers:
   '@testing-library/jest-dom': ^5.16.4
   '@testing-library/react': ^12.1.4
   '@testing-library/user-event': ^13.5.0
+  axios: ^0.27.2
   react: ^17.0.2
   react-dom: ^17.0.2
   react-router-dom: ^6.3.0
   react-scripts: 5.0.0
   tailwindcss: ^3.0.24
+  uuidv4: ^6.2.13
   web-vitals: ^2.1.4
 
 dependencies:
@@ -23,10 +25,12 @@ dependencies:
   '@testing-library/jest-dom': 5.16.4
   '@testing-library/react': 12.1.5_react-dom@17.0.2+react@17.0.2
   '@testing-library/user-event': 13.5.0
+  axios: 0.27.2
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
   react-router-dom: 6.3.0_react-dom@17.0.2+react@17.0.2
   react-scripts: 5.0.0_react@17.0.2
+  uuidv4: 6.2.13
   web-vitals: 2.1.4
 
 devDependencies:
@@ -2597,6 +2601,10 @@ packages:
     resolution: {integrity: sha512-F5DIZ36YVLE+PN+Zwws4kJogq47hNgX3Nx6WyDJ3kcplxyke3XIzB8uK5n/Lpm1HBsbGzd6nmGehL8cPekP+Tg==}
     dev: false
 
+  /@types/uuid/8.3.4:
+    resolution: {integrity: sha512-c/I8ZRb51j+pYGAu5CrFMRxqZ2ke4y2grEBO5AUjgSkSk+qT2Ea+OdWElz/OiMf5MNpn2b17kuVBwZLQJXzihw==}
+    dev: false
+
   /@types/ws/8.5.3:
     resolution: {integrity: sha512-6YOoWjruKj1uLf3INHH7D3qTXwFfEsg1kf3c0uDdSBJwfa/llkwIjrAGV7j7mVgGNbzTQ3HiHKKDXl6bJPD97w==}
     dependencies:
@@ -3156,6 +3164,15 @@ packages:
   /axe-core/4.4.1:
     resolution: {integrity: sha512-gd1kmb21kwNuWr6BQz8fv6GNECPBnUasepcoLbekws23NVBLODdsClRZ+bQ8+9Uomf3Sm3+Vwn0oYG9NvwnJCw==}
     engines: {node: '>=4'}
+    dev: false
+
+  /axios/0.27.2:
+    resolution: {integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==}
+    dependencies:
+      follow-redirects: 1.14.9
+      form-data: 4.0.0
+    transitivePeerDependencies:
+      - debug
     dev: false
 
   /axobject-query/2.2.0:
@@ -5020,6 +5037,15 @@ packages:
 
   /form-data/3.0.1:
     resolution: {integrity: sha512-RHkBKtLWUVwd7SqRIvCZMEvAMoGUp0XU+seQiZejj0COz3RI3hWP4sCv3gZWWLjJTd7rGwcsF5eKZGii0r/hbg==}
+    engines: {node: '>= 6'}
+    dependencies:
+      asynckit: 0.4.0
+      combined-stream: 1.0.8
+      mime-types: 2.1.35
+    dev: false
+
+  /form-data/4.0.0:
+    resolution: {integrity: sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==}
     engines: {node: '>= 6'}
     dependencies:
       asynckit: 0.4.0
@@ -9272,6 +9298,13 @@ packages:
   /uuid/8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
     hasBin: true
+    dev: false
+
+  /uuidv4/6.2.13:
+    resolution: {integrity: sha512-AXyzMjazYB3ovL3q051VLH06Ixj//Knx7QnUSi1T//Ie3io6CpsPu9nVMOx5MoLWh6xV0B9J0hIaxungxXUbPQ==}
+    dependencies:
+      '@types/uuid': 8.3.4
+      uuid: 8.3.2
     dev: false
 
   /v8-compile-cache/2.3.0:

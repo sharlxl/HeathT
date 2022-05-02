@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { NavLink } from "react-router-dom";
 import Button from "../components/Button";
 import TextInput from "../components/TextInput";
+import axios from "axios";
 
 const LoginPage = () => {
+  // const userContext = useContext(userContext);
   const [name, setName] = useState();
   const [password, setPassword] = useState();
   console.log("name", name);
@@ -11,30 +14,17 @@ const LoginPage = () => {
   const onSumbitLogin = (e) => {
     e.preventDefault();
     console.log(name, password);
-    //   axios
-    //     .post(
-    //       "http://localhost:5001/users/login",
-    //       { email, password },
-    //       { withCredentials: true }
-    //     )
-    //     .then((res) => {
-    //       if (res.data.status === "ok") {
-    //         const currentUser = users.find((user) => {
-    //           if (user.email === email) {
-    //             return user;
-    //           }
-    //         });
-    //         //stores only current user data into a userSlice
-    //         dispatch(
-    //           LOGIN({
-    //             ...currentUser,
-    //           })
-    //         );
-    //         navigate("/main");
-    //       }
-    //     }) //axios try catch function to capture the errors
-    //     .catch((err) => alert("Log in failed, invalid credentials", err));
-    // };
+    // axios
+    //   .post(
+    //     "http://localhost:5001/user/login",
+    //     { name, password }
+    //     //       { withCredentials: true }
+    //   )
+    //   .then(
+    //     (res) => {}
+    //     // navigate("/main")
+    //   ) //axios try catch function to capture the errors
+    //   .catch((err) => err);
   };
 
   return (
@@ -58,7 +48,7 @@ const LoginPage = () => {
         />
         <div className=" flex justify-between mt-[3rem]">
           <button className="text-sm underline hover:text-[#28D5BC]">
-            New? Sign Up here!
+            <NavLink to="/new">New? Sign Up here!</NavLink>
           </button>
           <Button type="submit" placeholder="Log in" />
         </div>
