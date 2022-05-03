@@ -9,8 +9,13 @@ const AllergyCard = (props) => {
       <p>{props.date}</p>
       <p>{props.name}</p>
       <p>{props.symptoms}</p>
-      <Button type="button" placeholder={<EditIcon />} />
-      <Button type="button" placeholder={<DelIcon />} />
+      <Button
+        title="Edit"
+        type="button"
+        placeholder={<EditIcon />}
+        onClick={() => props.setModal(true)}
+      />
+      <Button title="Delete" type="button" placeholder={<DelIcon />} />
     </div>
   );
 };

@@ -12,8 +12,8 @@ const RecordCard = (props) => {
       <p>{props.description}</p>
       <p>{props.trigger}</p>
       <p>{props.pain_score}</p>
-      <Button type="button" placeholder={<EditIcon />} />
-      <Button type="button" placeholder={<DelIcon />} />
+      <Button title="Edit" type="button" placeholder={<EditIcon />} />
+      <Button title="Delete" type="button" placeholder={<DelIcon />} />
     </div>
   );
 };

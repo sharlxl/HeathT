@@ -8,8 +8,8 @@ const ConditionCard = (props) => {
     <div id={props.condition_id}>
       <p>{props.date_of_diagnosis}</p>
       <p>{props.condition}</p>
-      <Button type="button" placeholder={<EditIcon />} />
-      <Button type="button" placeholder={<DelIcon />} />
+      <Button title="Edit" type="button" placeholder={<EditIcon />} />
+      <Button title="Delete" type="button" placeholder={<DelIcon />} />
     </div>
   );
 };

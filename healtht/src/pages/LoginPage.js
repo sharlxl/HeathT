@@ -11,6 +11,9 @@ const LoginPage = () => {
   const [password, setPassword] = useState();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+
+  console.log(user);
 
   const onSumbitLogin = (e) => {
     e.preventDefault();
@@ -28,9 +31,9 @@ const LoginPage = () => {
             ...res.data.user,
           })
         );
+        navigate("/main");
       }) //axios try catch function to capture the errors
       .catch((err) => err);
-    navigate("/main");
   };
 
   return (

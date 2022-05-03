@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import MenuIcon from "../svg/MenuIcon";
 import Logo from "../images/placeholderLogo.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { LOGOUT, selectUser } from "../redux/userSlice";
 
 const Header = () => {
   const [dropdown, setDropdown] = useState(false);
@@ -12,6 +14,15 @@ const Header = () => {
     } else {
       setDropdown(true);
     }
+  };
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const onClickLogout = (e) => {
+    e.preventDefault();
+    dispatch(LOGOUT());
+    navigate("/");
   };
 
   return (
@@ -38,13 +49,22 @@ const Header = () => {
             <li className="p-[0.5rem]">
               <NavLink to="/faq">FAQ/Useful Links</NavLink>
             </li>
-            <li className="p-[0.5rem]">
-              <NavLink to="">logout</NavLink>
-            </li>
+            <button
+              className="w-auto p-3"
+              title="Log out"
+              onClick={onClickLogout}
+            >
+              <svg
+                width="24"
+                height="24"
+                xmlns="http://www.w3.org/2000/svg"
+                fillRule="evenodd"
+                clipRule="evenodd"
+              >
+                <path d="M16 2v7h-2v-5h-12v16h12v-5h2v7h-16v-20h16zm2 9v-4l6 5-6 5v-4h-10v-2h10z" />
+              </svg>
+            </button>
           </ul>
-          <button className="w-auto p-3 sm:hidden">
-            <MenuIcon />
-          </button>
         </div>
       ) : (
         ""
@@ -65,18 +85,18 @@ const Header = () => {
         <li className="">
           <NavLink to="/faq">FAQ/Useful Links</NavLink>
         </li>
+        <button className="w-auto p-3" title="Log out" onClick={onClickLogout}>
+          <svg
+            width="24"
+            height="24"
+            xmlns="http://www.w3.org/2000/svg"
+            fillRule="evenodd"
+            clipRule="evenodd"
+          >
+            <path d="M16 2v7h-2v-5h-12v16h12v-5h2v7h-16v-20h16zm2 9v-4l6 5-6 5v-4h-10v-2h10z" />
+          </svg>
+        </button>
       </ul>
-      <button className="w-auto p-3" title="Log out">
-        <svg
-          width="24"
-          height="24"
-          xmlns="http://www.w3.org/2000/svg"
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-        >
-          <path d="M16 2v7h-2v-5h-12v16h12v-5h2v7h-16v-20h16zm2 9v-4l6 5-6 5v-4h-10v-2h10z" />
-        </svg>
-      </button>
     </div>
   );
 };
