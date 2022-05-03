@@ -50,6 +50,8 @@ const SignUpForm = () => {
         })
         .then((res) => {
           console.log(res.data);
+          let token = res.data.token;
+          localStorage.setItem("SavedToken", "Bearer " + token);
         })
         .catch((err) => {
           console.log(err);

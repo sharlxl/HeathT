@@ -26,6 +26,9 @@ const Header = () => {
             <li className="p-[0.5rem]">
               <NavLink to="/main">Home</NavLink>
             </li>
+            <li className="p-[0.5rem]">
+              <NavLink to="/allergies">Allergies</NavLink>
+            </li>
             <li className="">
               <NavLink to="/conditions">Medical Conditions</NavLink>
             </li>
@@ -39,6 +42,9 @@ const Header = () => {
               <NavLink to="">logout</NavLink>
             </li>
           </ul>
+          <button className="w-auto p-3 sm:hidden">
+            <MenuIcon />
+          </button>
         </div>
       ) : (
         ""
@@ -46,6 +52,9 @@ const Header = () => {
       <ul className="hidden sm:flex sm:flex-col self-center">
         <li className="">
           <NavLink to="/main">Home</NavLink>
+        </li>
+        <li className="">
+          <NavLink to="/allergies">Allergies</NavLink>
         </li>
         <li className="">
           <NavLink to="/conditions">Medical Conditions</NavLink>
@@ -56,10 +65,18 @@ const Header = () => {
         <li className="">
           <NavLink to="/faq">FAQ/Useful Links</NavLink>
         </li>
-        <li className="">
-          <NavLink to="">logout</NavLink>
-        </li>
       </ul>
+      <button className="w-auto p-3" title="Log out">
+        <svg
+          width="24"
+          height="24"
+          xmlns="http://www.w3.org/2000/svg"
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+        >
+          <path d="M16 2v7h-2v-5h-12v16h12v-5h2v7h-16v-20h16zm2 9v-4l6 5-6 5v-4h-10v-2h10z" />
+        </svg>
+      </button>
     </div>
   );
 };

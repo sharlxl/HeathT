@@ -1,30 +1,36 @@
-import React, { useContext, useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import TextInput from "../components/TextInput";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { LOGIN, selectUser } from "../redux/userSlice";
 
 const LoginPage = () => {
-  // const userContext = useContext(userContext);
   const [name, setName] = useState();
   const [password, setPassword] = useState();
-  console.log("name", name);
-  console.log("password", password);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onSumbitLogin = (e) => {
     e.preventDefault();
     console.log(name, password);
-    // axios
-    //   .post(
-    //     "http://localhost:5001/user/login",
-    //     { name, password }
-    //     //       { withCredentials: true }
-    //   )
-    //   .then(
-    //     (res) => {}
-    //     // navigate("/main")
-    //   ) //axios try catch function to capture the errors
-    //   .catch((err) => err);
+    axios
+      .post(
+        "http://localhost:5001/users/login",
+        { name, password }
+        //       { withCredentials: true }
+      )
+      .then((res) => {
+        console.log("response", res.data);
+        dispatch(
+          LOGIN({
+            ...res.data.user,
+          })
+        );
+      }) //axios try catch function to capture the errors
+      .catch((err) => err);
+    navigate("/main");
   };
 
   return (

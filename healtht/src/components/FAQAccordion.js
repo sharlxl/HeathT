@@ -16,12 +16,26 @@ const FAQAccordion = () => {
       </AccordionLayout>
 
       <AccordionLayout
-        title="Accordion 2"
+        title="External Links"
         index={2}
         activeIndex={activeIndex}
         setActiveIndex={setActiveIndex}
       >
-        Accordion 2 Content
+        <ul>
+          <li>
+            <a href="https://www.healthhub.sg/">HealthHub</a>
+          </li>
+          <li>
+            <a href="https://www.healthhub.sg/a-z/b?cat=support-groups-and-others&r=48690">
+              Support Groups
+            </a>
+          </li>
+          <li>
+            <a href="https://www.healthhub.sg/live-healthy?category=Chronic-Illnesses">
+              Health Articles
+            </a>
+          </li>
+        </ul>
       </AccordionLayout>
     </div>
   );

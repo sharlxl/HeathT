@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
@@ -6,14 +6,11 @@ import SignUpPage from "./pages/SignUpPage";
 import FAQPage from "./pages/FAQPage";
 import Records from "./pages/Records";
 import Conditions from "./pages/Conditions";
-
-const UserContext = createContext();
+import Allergies from "./pages/Allergies";
 
 function App() {
-  const [user, setUser] = useState({});
-
   return (
-    <UserContext.Provider value={(user, setUser)}>
+    <>
       <Routes>
         <Route path="/" element={<Navigate replace to="/login" />} />
         <Route path="/login" element={<LoginPage />} />
@@ -22,8 +19,9 @@ function App() {
         <Route path="/faq" element={<FAQPage />} />
         <Route path="/record" element={<Records />} />
         <Route path="/conditions" element={<Conditions />} />
+        <Route path="/allergies" element={<Allergies />} />
       </Routes>
-    </UserContext.Provider>
+    </>
   );
 }
 

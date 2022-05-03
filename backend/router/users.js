@@ -23,8 +23,8 @@ const errorFormatter = (e) => {
 /** users */
 //auth middleware need a req.headers
 //and user_id: req.boday for the user details
-//should i add auth to the rest of the routes? eg allergies...
-router.get("/profile", auth, async (req, res) => {
+//should i add auth to the rest of the routes? eg allergies...auth,
+router.get("/profile", async (req, res) => {
   const user = await User.find({ user_id: req.body });
   res.json(user);
 });
@@ -116,5 +116,23 @@ router.post("/login", async (req, res) => {
 //   });
 //   console.log(req.session);
 // });
+
+// seed data //
+const seed = require("../models/seed.js");
+
+router.get("/seedData", async (req, res) => {
+  await User.deleteMany({});
+  // encrypts the given seed passwords
+  await seed.forEach((user) => {
+    user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10));
+  });
+  // seeds the data
+  await User.create(seed, (err, createdUsers) => {
+    // logs created users
+    console.log(createdUsers);
+    // redirects to index
+    res.redirect("/");
+  });
+});
 
 module.exports = router;

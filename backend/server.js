@@ -19,26 +19,6 @@ router.use(express.urlencoded({ extended: false }));
 
 connectDB(process.env.MONGODB_URI);
 
-// // seed data //
-// const seed = require("./models/seed.js");
-// const Users = require("./models/Users");
-// // const User = require('./models/users.js');
-
-// router.get("/seedData", async (req, res) => {
-//   await Users.deleteMany({});
-//   // encrypts the given seed passwords
-//   await seed.forEach((user) => {
-//     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10));
-//   });
-//   // seeds the data
-//   await Users.create(seed, (err, createdUsers) => {
-//     // logs created users
-//     console.log(createdUsers);
-//     // redirects to index
-//     res.redirect("/");
-//   });
-// });
-
 router.use(cors());
 
 router.use("/users", users);

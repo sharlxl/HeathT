@@ -2,7 +2,7 @@ seedUsers = [
   {
     user_id: "1",
     name: "John",
-    password: "test123",
+    password: "test1234",
 
     allergies: [
       {
