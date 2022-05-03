@@ -1,9 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "./Button";
 
 const AllergyEntry = () => {
+  const [allergy, setAllergy] = useState({
+    date: "",
+    name: "",
+    symptoms: [],
+  });
+  const [symptomsString, setSymptomsString] = useState("");
+
+  console.log(allergy);
+  const onChangeDate = (e) => {
+    setAllergy((prevState) => {
+      return { ...prevState, date: e.target.value };
+    });
+  };
+
+  const onChangeName = (e) => {
+    setAllergy((prevState) => {
+      return { ...prevState, name: e.target.value };
+    });
+  };
+
+  const onChangeSymptoms = (e) => {
+    e.preventDefault();
+    setSymptomsString(e.target.value);
+  };
+
   const onSubmitAllergy = (e) => {
     e.preventDefault();
+    const splitSymptoms = symptomsString
+      .split(".")
+      .map((symptom) => symptom.trim());
+    setAllergy((prevState) => {
+      return { ...prevState, symptoms: splitSymptoms };
+    });
+
+    console.log(allergy);
+
+    setAllergy({
+      date: "",
+      name: "",
+      symptoms: [],
+    });
   };
 
   return (
@@ -17,8 +56,8 @@ const AllergyEntry = () => {
       <input
         id="date"
         type="date"
-        // value={condition.date}
-        // onChange={onChangeDate}
+        value={allergy.date}
+        onChange={onChangeDate}
         className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         placeholder=""
       />
@@ -32,8 +71,8 @@ const AllergyEntry = () => {
       <input
         id="name"
         type="text"
-        // value={condition.condition}
-        // onChange={onChangeCondition}
+        value={allergy.name}
+        onChange={onChangeName}
         className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         placeholder="What are you allergic to?"
       />
@@ -46,8 +85,8 @@ const AllergyEntry = () => {
       <input
         id="symptoms"
         type="text"
-        // value={condition.condition}
-        // onChange={onChangeCondition}
+        value={symptomsString}
+        onChange={onChangeSymptoms}
         className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         placeholder="what symptoms do you exhibit?"
       />
