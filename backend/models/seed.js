@@ -33,7 +33,7 @@ seedUsers = [
         time: "2022-04-25T15:40:50.776Z",
         description:
           "Pain over my right wrist, caught a pretty hard pass from my friend, the angle of my catch might be off",
-        pain_score: "mild pain",
+        pain_score: 2,
         trigger: "after playing basketball",
       },
       {
@@ -41,7 +41,7 @@ seedUsers = [
         date: "2022-04-27T15:40:50.776Z",
         time: "2022-04-27T15:40:50.776Z",
         description: "Right wrist throbbing intermittently",
-        pain_score: "mild pain",
+        pain_score: 3,
         trigger: "While using computer",
       },
       {
@@ -50,7 +50,7 @@ seedUsers = [
         time: "2022-04-30T15:40:50.776Z",
         description:
           "sudden sharp pain on my right wrist, woke me up from sleep",
-        pain_score: "severe pain",
+        pain_score: 6,
         trigger: "While sleeping",
       },
       {
@@ -59,7 +59,7 @@ seedUsers = [
         time: "2022-05-01T15:40:50.776Z",
         description:
           "consistent dull aching pain on right wrist, sharp pain when pressure applied.",
-        pain_score: "moderate pain",
+        pain_score: 6,
         trigger: "no trigger, occurs consistently",
       },
     ],
