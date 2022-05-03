@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { DEL_RECORD, EDIT_RECORD } from "../redux/userSlice";
 import DelIcon from "../svg/DelIcon";
 import EditIcon from "../svg/EditIcon";
 import Button from "./Button";
+import Modal from "./Modal";
 
 const RecordCard = (props) => {
   const [edit, setEdit] = useState(false);
@@ -55,12 +57,33 @@ const RecordCard = (props) => {
   const onSubmitSave = (e) => {
     e.preventDefault();
     const index = props.index;
-    // dispatch(EDIT_ALLERGY({ index, editValues }));
+    dispatch(EDIT_RECORD({ index, editValues }));
     setEdit(false);
   };
 
+  const [checkDel, setCheckDel] = useState(false);
+
+  const delCheckModal = () => {
+    if (checkDel) {
+      setCheckDel(false);
+    } else {
+      setCheckDel(true);
+    }
+  };
+  const onClickDel = () => {
+    const index = props.index;
+    dispatch(DEL_RECORD({ index }));
+    setCheckDel(false);
+  };
   return (
     <>
+      {checkDel && (
+        <Modal
+          title="Record"
+          delCheckModal={delCheckModal}
+          onClickDel={onClickDel}
+        />
+      )}
       {edit ? (
         <form onSubmit={onSubmitSave}>
           <input
@@ -121,7 +144,12 @@ const RecordCard = (props) => {
             placeholder={<EditIcon />}
             onClick={onClickEdit}
           />
-          <Button title="Delete" type="button" placeholder={<DelIcon />} />
+          <Button
+            onClick={delCheckModal}
+            title="Delete"
+            type="button"
+            placeholder={<DelIcon />}
+          />
         </div>
       )}
     </>

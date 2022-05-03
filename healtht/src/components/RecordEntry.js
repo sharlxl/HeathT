@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import Button from "./Button";
+import { v4 as uuidv4 } from "uuid";
+import { useDispatch } from "react-redux";
+import { ADD_RECORD } from "../redux/userSlice";
 
 const RecordEntry = () => {
   const [record, setRecord] = useState({
-    date: new Date().toISOString(),
-    time: new Date().toISOString(),
+    date: new Date().toLocaleDateString(),
+    time: new Date().toLocaleTimeString(),
+    record_id: uuidv4(),
     description: "",
     trigger: "",
-    pain: 0,
+    pain_score: 0,
     painDescription: "No Pain",
   });
 
@@ -27,7 +31,7 @@ const RecordEntry = () => {
 
   const onChangePainScore = (e) => {
     setRecord((prevState) => {
-      return { ...prevState, pain: e.target.value };
+      return { ...prevState, pain_score: e.target.value };
     });
     if (e.target.value > 0 && e.target.value < 4) {
       setRecord((prevState) => {
@@ -48,15 +52,18 @@ const RecordEntry = () => {
     }
   };
 
+  const dispatch = useDispatch();
   const onSubmitRecord = (e) => {
     e.preventDefault();
+    dispatch(ADD_RECORD({ record }));
     console.log(record);
     setRecord({
-      date: "",
-      time: "",
+      date: new Date().toLocaleDateString(),
+      time: new Date().toLocaleTimeString(),
+      record_id: uuidv4(),
       description: "",
       trigger: "",
-      pain: 0,
+      pain_score: 0,
       painDescription: "No Pain",
     });
   };
@@ -97,7 +104,7 @@ const RecordEntry = () => {
       >
         Any pain associated with it?{" "}
         <span>
-          {record.pain} - {record.painDescription}
+          {record.pain_score} - {record.painDescription}
         </span>
       </label>
       <div className="w-full">
@@ -105,7 +112,7 @@ const RecordEntry = () => {
           onChange={onChangePainScore}
           type="range"
           list="tickmarks"
-          value={record.pain}
+          value={record.pain_score}
           min="0"
           max="10"
           className="w-full"

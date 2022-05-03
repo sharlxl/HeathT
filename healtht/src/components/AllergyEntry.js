@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import Button from "./Button";
+import { v4 as uuidv4 } from "uuid";
+import { useDispatch } from "react-redux";
+import { ADD_ALLERGY } from "../redux/userSlice";
 
 const AllergyEntry = () => {
   const [allergy, setAllergy] = useState({
+    allergy_id: uuidv4(),
     date: "",
     name: "",
     symptoms: [],
@@ -25,20 +29,21 @@ const AllergyEntry = () => {
   const onChangeSymptoms = (e) => {
     e.preventDefault();
     setSymptomsString(e.target.value);
-  };
-
-  const onSubmitAllergy = (e) => {
-    e.preventDefault();
     const splitSymptoms = symptomsString
       .split(".")
       .map((symptom) => symptom.trim());
     setAllergy((prevState) => {
       return { ...prevState, symptoms: splitSymptoms };
     });
-
-    console.log(allergy);
+  };
+  const dispatch = useDispatch();
+  const onSubmitAllergy = (e) => {
+    e.preventDefault();
+    dispatch(ADD_ALLERGY({ allergy }));
+    // console.log(allergy);
 
     setAllergy({
+      allergy_id: uuidv4(),
       date: "",
       name: "",
       symptoms: [],

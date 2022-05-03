@@ -17,16 +17,19 @@ const Records = () => {
       <div className="h-full max-w-[70%] mx-auto min-w-[300px] sm:max-w-[50%] sm:min-w-[400px] bg-[#E8F3F1] overflow-auto">
         <h1>New Record:</h1>
         <RecordEntry />
-        {user.records.map((record) => (
-          <RecordCard
-            record_id={record.record_id}
-            date={record.date}
-            time={record.time}
-            description={record.description}
-            trigger={record.trigger}
-            pain_score={record.pain_score}
-          />
-        ))}
+        {user.records
+          .map((record, index) => (
+            <RecordCard
+              index={index}
+              record_id={record.record_id}
+              date={record.date}
+              time={record.time}
+              description={record.description}
+              trigger={record.trigger}
+              pain_score={record.pain_score}
+            />
+          ))
+          .reverse()}
       </div>
     </div>
   );

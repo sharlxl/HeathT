@@ -3,7 +3,8 @@ import Button from "./Button";
 import EditIcon from "../svg/EditIcon";
 import DelIcon from "../svg/DelIcon";
 import { useDispatch } from "react-redux";
-import { EDIT_CONDITION } from "../redux/userSlice";
+import { DEL_CONDITION, EDIT_CONDITION } from "../redux/userSlice";
+import Modal from "./Modal";
 
 const ConditionCard = (props) => {
   const [edit, setEdit] = useState(false);
@@ -42,8 +43,31 @@ const ConditionCard = (props) => {
     setEdit(false);
   };
 
+  const [checkDel, setCheckDel] = useState(false);
+
+  const delCheckModal = () => {
+    if (checkDel) {
+      setCheckDel(false);
+    } else {
+      setCheckDel(true);
+    }
+  };
+
+  const onClickDel = () => {
+    const index = props.index;
+    dispatch(DEL_CONDITION({ index }));
+    setCheckDel(false);
+  };
+
   return (
     <>
+      {checkDel && (
+        <Modal
+          title="Medical Condition"
+          delCheckModal={delCheckModal}
+          onClickDel={onClickDel}
+        />
+      )}
       {edit ? (
         <form onSubmit={onSubmitSave}>
           <input
@@ -74,7 +98,12 @@ const ConditionCard = (props) => {
             onClick={onClickEdit}
             placeholder={<EditIcon />}
           />
-          <Button title="Delete" type="button" placeholder={<DelIcon />} />
+          <Button
+            onClick={delCheckModal}
+            title="Delete"
+            type="button"
+            placeholder={<DelIcon />}
+          />
         </div>
       )}
     </>

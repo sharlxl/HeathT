@@ -16,15 +16,17 @@ const Allergies = () => {
       <div className="h-full max-w-[70%] mx-auto min-w-[300px] sm:max-w-[50%] sm:min-w-[400px] bg-[#E8F3F1] overflow-auto">
         <h1>New allergy:</h1>
         <AllergyEntry />
-        {user.allergies.map((allergy, index) => (
-          <AllergyCard
-            index={index}
-            allergy_id={allergy.allergy_id}
-            name={allergy.name}
-            date={allergy.date}
-            symptoms={allergy.symptoms}
-          />
-        ))}
+        {user.allergies
+          .map((allergy, index) => (
+            <AllergyCard
+              index={index}
+              allergy_id={allergy.allergy_id}
+              name={allergy.name}
+              date={allergy.date}
+              symptoms={allergy.symptoms}
+            />
+          ))
+          .reverse()}
       </div>
     </div>
   );

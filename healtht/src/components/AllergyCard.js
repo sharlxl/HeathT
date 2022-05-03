@@ -3,7 +3,8 @@ import Button from "./Button";
 import EditIcon from "../svg/EditIcon";
 import DelIcon from "../svg/DelIcon";
 import { useDispatch } from "react-redux";
-import { EDIT_ALLERGY } from "../redux/userSlice";
+import { DEL_ALLERGY, EDIT_ALLERGY } from "../redux/userSlice";
+import Modal from "./Modal";
 
 const AllergyCard = (props) => {
   const [edit, setEdit] = useState(false);
@@ -49,8 +50,31 @@ const AllergyCard = (props) => {
     setEdit(false);
   };
 
+  const [checkDel, setCheckDel] = useState(false);
+
+  const delCheckModal = () => {
+    if (checkDel) {
+      setCheckDel(false);
+    } else {
+      setCheckDel(true);
+    }
+  };
+
+  const onClickDel = () => {
+    const index = props.index;
+    dispatch(DEL_ALLERGY({ index }));
+    setCheckDel(false);
+  };
+
   return (
     <>
+      {checkDel && (
+        <Modal
+          title="Allergy"
+          delCheckModal={delCheckModal}
+          onClickDel={onClickDel}
+        />
+      )}
       {edit ? (
         <form onSubmit={onSubmitSave}>
           <input type="text" value={editValues.date} onChange={onChangeDate} />
@@ -84,7 +108,12 @@ const AllergyCard = (props) => {
             placeholder={<EditIcon />}
             onClick={onClickEdit}
           />
-          <Button title="Delete" type="button" placeholder={<DelIcon />} />
+          <Button
+            onClick={delCheckModal}
+            title="Delete"
+            type="button"
+            placeholder={<DelIcon />}
+          />
         </div>
       )}
     </>

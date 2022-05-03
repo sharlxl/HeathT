@@ -16,14 +16,16 @@ const Conditions = () => {
       <div className="h-full max-w-[70%] mx-auto min-w-[300px] sm:max-w-[50%] sm:min-w-[400px] bg-[#E8F3F1] overflow-auto">
         <h1>New condition:</h1>
         <CondtionEntry />
-        {user.medical_conditions.map((condition, index) => (
-          <ConditionCard
-            index={index}
-            condition_id={condition.condition_id}
-            condition={condition.condition}
-            date_of_diagnosis={condition.date_of_diagnosis}
-          />
-        ))}
+        {user.medical_conditions
+          .map((condition, index) => (
+            <ConditionCard
+              index={index}
+              condition_id={condition.condition_id}
+              condition={condition.condition}
+              date_of_diagnosis={condition.date_of_diagnosis}
+            />
+          ))
+          .reverse()}
       </div>
     </div>
   );
