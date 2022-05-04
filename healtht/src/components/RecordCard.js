@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { DEL_RECORD, EDIT_RECORD } from "../redux/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { DEL_RECORD, EDIT_RECORD, selectUser } from "../redux/userSlice";
 import DelIcon from "../svg/DelIcon";
 import EditIcon from "../svg/EditIcon";
 import Button from "./Button";
 import Modal from "./Modal";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 const RecordCard = (props) => {
   const [edit, setEdit] = useState(false);
@@ -53,11 +55,46 @@ const RecordCard = (props) => {
   const onClickClose = () => {
     setEdit(false);
   };
+
+  const user = useSelector(selectUser);
   const dispatch = useDispatch();
+
   const onSubmitSave = (e) => {
     e.preventDefault();
     const index = props.index;
     dispatch(EDIT_RECORD({ index, editValues }));
+    axios
+      .put(`http://localhost:5001/records/edit`, {
+        user_id: user.user_id,
+        record_id: props.record_id,
+        description: editValues.description,
+        trigger: editValues.trigger,
+        pain_score: editValues.pain_score,
+      })
+      .then((res) => {
+        // console.log(res.data);
+        toast.success(res.data.message, {
+          position: "top-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        // alert(res.data.message);
+      })
+      .catch((err) => {
+        toast.error(err, {
+          position: "top-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
     setEdit(false);
   };
 
@@ -73,10 +110,50 @@ const RecordCard = (props) => {
   const onClickDel = () => {
     const index = props.index;
     dispatch(DEL_RECORD({ index }));
+    axios
+      .delete(`http://localhost:5001/records/delete`, {
+        data: {
+          user_id: user.user_id,
+          record_id: props.record_id,
+        },
+      })
+      .then((res) => {
+        toast.success(res.data.message, {
+          position: "top-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      })
+      .catch((err) => {
+        toast.error(err, {
+          position: "top-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
     setCheckDel(false);
   };
   return (
     <>
+      <ToastContainer
+        position="top-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       {checkDel && (
         <Modal
           title="Record"

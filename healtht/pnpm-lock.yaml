@@ -11,6 +11,7 @@ specifiers:
   react-redux: ^8.0.1
   react-router-dom: ^6.3.0
   react-scripts: 5.0.0
+  react-toastify: ^9.0.0
   redux: ^4.2.0
   redux-persist: ^6.0.0
   redux-thunk: ^2.4.1
@@ -29,6 +30,7 @@ dependencies:
   react-redux: 8.0.1_c2af06dc0d5c39ab82b9ceb4148e366a
   react-router-dom: 6.3.0_react-dom@17.0.2+react@17.0.2
   react-scripts: 5.0.0_react@17.0.2
+  react-toastify: 9.0.0_react-dom@17.0.2+react@17.0.2
   redux: 4.2.0
   redux-persist: 6.0.0_redux@4.2.0
   redux-thunk: 2.4.1_redux@4.2.0
@@ -3338,6 +3340,11 @@ packages:
       string-width: 4.2.3
       strip-ansi: 6.0.1
       wrap-ansi: 7.0.0
+    dev: false
+
+  /clsx/1.1.1:
+    resolution: {integrity: sha512-6/bPho624p3S2pMyvP5kKBPXnI3ufHLObBFCfgx+LkeR5lg2XYy2hqZqUf45ypD8COn2bhgGJSUE+l5dhNBieA==}
+    engines: {node: '>=6'}
     dev: false
 
   /co/4.6.0:
@@ -7886,6 +7893,17 @@ packages:
       - webpack-cli
       - webpack-hot-middleware
       - webpack-plugin-serve
+    dev: false
+
+  /react-toastify/9.0.0_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-gmxAFTKV0VVN7s5UEcZdC+bBR1EQtsqXgHJWQgB0G5J8m3Mdxz1Pacm7BJ1nTHkMMNfupruKCu7wUwAq46Z1jg==}
+    peerDependencies:
+      react: '>=16'
+      react-dom: '>=16'
+    dependencies:
+      clsx: 1.1.1
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
     dev: false
 
   /react/17.0.2:

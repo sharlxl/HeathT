@@ -7,6 +7,7 @@ import FAQPage from "./pages/FAQPage";
 import Records from "./pages/Records";
 import Conditions from "./pages/Conditions";
 import Allergies from "./pages/Allergies";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (

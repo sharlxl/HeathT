@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import Button from "./Button";
 import EditIcon from "../svg/EditIcon";
 import DelIcon from "../svg/DelIcon";
-import { useDispatch } from "react-redux";
-import { DEL_CONDITION, EDIT_CONDITION } from "../redux/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { DEL_CONDITION, EDIT_CONDITION, selectUser } from "../redux/userSlice";
 import Modal from "./Modal";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 const ConditionCard = (props) => {
   const [edit, setEdit] = useState(false);
@@ -35,15 +37,83 @@ const ConditionCard = (props) => {
   const onClickClose = () => {
     setEdit(false);
   };
+
+  const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const onSubmitSave = (e) => {
     e.preventDefault();
     const index = props.index;
     dispatch(EDIT_CONDITION({ index, editValues }));
+    axios
+      .put(`http://localhost:5001/conditions/edit`, {
+        user_id: user.user_id,
+        condition_id: props.condition_id,
+        condition: editValues.condition,
+        date_of_diagnosis: editValues.date_of_diagnosis,
+      })
+      .then((res) => {
+        // console.log(res.data);
+        toast.success(res.data.message, {
+          position: "top-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        // alert(res.data.message);
+      })
+      .catch((err) => {
+        toast.error(err, {
+          position: "top-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
     setEdit(false);
   };
 
   const [checkDel, setCheckDel] = useState(false);
+
+  const onClickDel = () => {
+    const index = props.index;
+    dispatch(DEL_CONDITION({ index }));
+    axios
+      .delete(`http://localhost:5001/conditions/delete`, {
+        data: {
+          user_id: user.user_id,
+          condition_id: props.condition_id,
+        },
+      })
+      .then((res) => {
+        toast.success(res.data.message, {
+          position: "top-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      })
+      .catch((err) => {
+        toast.error(err, {
+          position: "top-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
+    setCheckDel(false);
+  };
 
   const delCheckModal = () => {
     if (checkDel) {
@@ -53,14 +123,19 @@ const ConditionCard = (props) => {
     }
   };
 
-  const onClickDel = () => {
-    const index = props.index;
-    dispatch(DEL_CONDITION({ index }));
-    setCheckDel(false);
-  };
-
   return (
     <>
+      <ToastContainer
+        position="top-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       {checkDel && (
         <Modal
           title="Medical Condition"

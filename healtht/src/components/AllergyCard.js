@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { DEL_ALLERGY, EDIT_ALLERGY, selectUser } from "../redux/userSlice";
 import Modal from "./Modal";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 const AllergyCard = (props) => {
   const [edit, setEdit] = useState(false);
@@ -51,8 +52,6 @@ const AllergyCard = (props) => {
   };
 
   const user = useSelector(selectUser);
-  const user_id = user.user_id;
-  const allergy_id = props.allergy_id;
   const dispatch = useDispatch();
 
   const onSubmitSave = (e) => {
@@ -69,9 +68,27 @@ const AllergyCard = (props) => {
         symptoms: editValues.symptoms,
       })
       .then((res) => {
-        console.log(res.data);
+        toast.success(res.data.message, {
+          position: "top-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        toast.error(err, {
+          position: "top-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
     setEdit(false);
   };
 
@@ -82,14 +99,32 @@ const AllergyCard = (props) => {
     axios
       .delete(`http://localhost:5001/allergies/delete`, {
         data: {
-          user_id,
-          allergy_id,
+          user_id: user.user_id,
+          allergy_id: props.allergy_id,
         },
       })
       .then((res) => {
-        console.log(res.data);
+        toast.success(res.data.message, {
+          position: "top-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        toast.error(err, {
+          position: "top-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
     setCheckDel(false);
   };
 
@@ -103,6 +138,17 @@ const AllergyCard = (props) => {
 
   return (
     <>
+      <ToastContainer
+        position="top-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       {checkDel && (
         <Modal
           title="Allergy"
@@ -168,7 +214,7 @@ const AllergyCard = (props) => {
           </form>
         </div>
       ) : (
-        <div className="mt-14" id={props.allergy_id}>
+        <div className="mt-14">
           <p className="pl-5 py-1">Diagnosed on {props.date}</p>
           <p className="pl-5 py-1 text-xl bg-[#9FDFD1] rounded-t-md">
             {props.name}
