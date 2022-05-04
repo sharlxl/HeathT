@@ -34,23 +34,23 @@ const Header = () => {
       {dropdown ? (
         <div className="origin-top-right absolute top-[3.1rem] right-[0.5rem] rounded-md shadow-lg bg-[rgba(40,213,188,1)] text-black flex flex-col w-[12rem] sm:hidden">
           <ul className="p-5">
-            <li className="p-[0.5rem]">
+            <li className="mt-0.5 p-[0.5rem] shadow-sm ">
               <NavLink to="/main">Home</NavLink>
             </li>
-            <li className="p-[0.5rem]">
+            <li className="mt-0.5 p-[0.5rem] shadow-sm ">
               <NavLink to="/allergies">Allergies</NavLink>
             </li>
-            <li className="">
+            <li className="mt-0.5 p-[0.5rem] shadow-sm ">
               <NavLink to="/conditions">Medical Conditions</NavLink>
             </li>
-            <li className="p-[0.5rem]">
+            <li className="mt-0.5 p-[0.5rem] shadow-sm ">
               <NavLink to="/record">Records</NavLink>
             </li>
-            <li className="p-[0.5rem]">
+            <li className="mt-0.5 p-[0.5rem] shadow-sm ">
               <NavLink to="/faq">FAQ/Useful Links</NavLink>
             </li>
             <button
-              className="w-auto p-3"
+              className="w-auto p-3 float-right shadow-sm "
               title="Log out"
               onClick={onClickLogout}
             >
@@ -69,23 +69,27 @@ const Header = () => {
       ) : (
         ""
       )}
-      <ul className="hidden sm:flex sm:flex-col self-center">
-        <li className="">
+      <ul className="hidden sm:flex sm:flex-col self-center w-full px-10">
+        <li className="hover:bg-[#6D9B91] p-2 rounded-md shadow-sm">
           <NavLink to="/main">Home</NavLink>
         </li>
-        <li className="">
+        <li className="hover:bg-[#6D9B91] p-2 rounded-md shadow-sm">
           <NavLink to="/allergies">Allergies</NavLink>
         </li>
-        <li className="">
+        <li className="hover:bg-[#6D9B91] p-2 rounded-md shadow-sm">
           <NavLink to="/conditions">Medical Conditions</NavLink>
         </li>
-        <li className="">
+        <li className="hover:bg-[#6D9B91] p-2 rounded-md shadow-sm">
           <NavLink to="/record">Records</NavLink>
         </li>
-        <li className="">
+        <li className="hover:bg-[#6D9B91] p-2 rounded-md shadow-sm">
           <NavLink to="/faq">FAQ/Useful Links</NavLink>
         </li>
-        <button className="w-auto p-3" title="Log out" onClick={onClickLogout}>
+        <button
+          className="w-auto p-3 hover:bg-[#6D9B91] rounded-md self-center shadow-sm"
+          title="Log out"
+          onClick={onClickLogout}
+        >
           <svg
             width="24"
             height="24"
