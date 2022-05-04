@@ -20,8 +20,8 @@ const MainPage = () => {
         </p>
         <p>Conditions:</p>
         <ul className="text-xl bg-slate-100 mx-2 pl-2">
-          {user.medical_conditions.map((condition) => (
-            <li>{condition.condition}</li>
+          {user.medical_conditions.map((condition, index) => (
+            <li key={index}>{condition.condition}</li>
           ))}
         </ul>
         <p>Number of Record Entries:</p>

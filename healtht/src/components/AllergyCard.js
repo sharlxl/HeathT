@@ -220,8 +220,12 @@ const AllergyCard = (props) => {
             {props.name}
           </p>
           <div className="rounded-b-md border-b-2 border-x-2 border-[#9FDFD1] bg-[#E8F3F1]">
-            {props.symptoms.map((symptom) => {
-              return <p className="pl-5 py-2">{symptom}</p>;
+            {props.symptoms.map((symptom, index) => {
+              return (
+                <p key={index} className="pl-5 py-2">
+                  {symptom}
+                </p>
+              );
             })}
           </div>
 

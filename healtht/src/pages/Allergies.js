@@ -19,6 +19,7 @@ const Allergies = () => {
         {user.allergies
           .map((allergy, index) => (
             <AllergyCard
+              key={index}
               index={index}
               allergy_id={allergy.allergy_id}
               name={allergy.name}

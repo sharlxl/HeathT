@@ -20,6 +20,7 @@ const Records = () => {
         {user.records
           .map((record, index) => (
             <RecordCard
+              key={index}
               index={index}
               record_id={record.record_id}
               date={record.date}

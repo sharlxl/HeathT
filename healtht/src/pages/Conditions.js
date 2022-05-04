@@ -19,6 +19,7 @@ const Conditions = () => {
         {user.medical_conditions
           .map((condition, index) => (
             <ConditionCard
+              key={index}
               index={index}
               condition_id={condition.condition_id}
               condition={condition.condition}
