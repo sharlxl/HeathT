@@ -5,6 +5,10 @@ import { selectUser } from "../redux/userSlice";
 
 const MainPage = () => {
   const user = useSelector(selectUser);
+  // console.log(user);
+  // if (!user) {
+  //   return <p>something is wrong</p>;
+  // }
   const styledName = user.name[0].toUpperCase() + user.name.substring(1);
 
   return (
@@ -16,16 +20,22 @@ const MainPage = () => {
         <h1 className="text-4xl mb-5">Hi, {styledName}</h1>
         <p className="">Number of Allergies:</p>
         <p className="text-xl bg-slate-100 mx-2 pl-2">
-          {user.allergies.length}
+          {user.allergies ? user.allergies.length : 0}
         </p>
         <p>Conditions:</p>
         <ul className="text-xl bg-slate-100 mx-2 pl-2">
-          {user.medical_conditions.map((condition, index) => (
-            <li key={index}>{condition.condition}</li>
-          ))}
+          {user.medical_conditions ? (
+            user.medical_conditions.map((condition, index) => (
+              <li key={index}>{condition.condition}</li>
+            ))
+          ) : (
+            <li></li>
+          )}
         </ul>
         <p>Number of Record Entries:</p>
-        <p className="text-xl bg-slate-100 mx-2 pl-2">{user.records.length}</p>
+        <p className="text-xl bg-slate-100 mx-2 pl-2">
+          {user.records ? user.records.length : 0}
+        </p>
       </div>
     </div>
   );

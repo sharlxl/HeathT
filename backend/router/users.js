@@ -4,12 +4,11 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
-const auth = require("../middleware/auth");
+// const auth = require("../middleware/auth");
 
 dotenv.config();
 
 const errorFormatter = (e) => {
-  // "User validation failed: name: Name may only have letters and numbers., password: Password should be at least 8 characters, confirmPassword: Please retype your password."
   const errors = {};
   const allErrors = e.substring(e.indexOf(":") + 1).trim();
   const splitAllErrors = allErrors.split(",").map((err) => err.trim());
@@ -33,20 +32,20 @@ router.post("/create", async (req, res) => {
   try {
     req.body.password = await bcrypt.hash(req.body.password, 12);
     const newUser = await User.create(req.body);
-    if (newUser) {
-      const token = jwt.sign(
-        { user_id: newUser.user_id, name: newUser.name },
-        process.env.TOKEN_SECRET,
-        { expiresIn: "1h" }
-      ); // generates a JWT token on creation
-      res.json({ status: "ok", message: "user created", token: token });
-    }
+    // if (newUser) {
+    //   const token = jwt.sign(
+    //     { user_id: newUser.user_id, name: newUser.name },
+    //     process.env.TOKEN_SECRET,
+    //     { expiresIn: "1h" }
+    //   ); // generates a JWT token on creation token: token
+    res.json({ status: "ok", message: "user created" });
+    // }
   } catch (error) {
     console.log(error);
-    res.status(401).json({
-      message: "something went wrong with creating user",
-      debugInfo: errorFormatter(error.message),
-    });
+    // res.status(401).json({
+    //   message: "something went wrong with creating user",
+    //   debugInfo: errorFormatter(error.message),
+    // });
   }
 });
 
@@ -91,15 +90,15 @@ router.post("/login", async (req, res) => {
       });
     }
 
-    //creates a JWT token after passing both checks
-    const token = jwt.sign(
-      { user_id: user.user_id, name: user.name },
-      process.env.TOKEN_SECRET,
-      { expiresIn: "1h" }
-    );
+    // //creates a JWT token after passing both checks
+    // const token = jwt.sign(
+    //   { user_id: user.user_id, name: user.name },
+    //   process.env.TOKEN_SECRET,
+    //   { expiresIn: "1h" }
+    // );, jwt: token && token
 
-    if (user && passwordCheck && token) {
-      res.json({ message: "log in sucessful", user: user, jwt: token });
+    if (user && passwordCheck) {
+      res.json({ message: "log in sucessful", user: user });
     }
   } catch (error) {
     res.status(401).json({

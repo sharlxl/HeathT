@@ -2,6 +2,31 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const Schema = mongoose.Schema;
 
+const AllergySchema = new Schema({
+  allergy_id: { type: String, required: true, unique: true },
+  name: { type: String, required: [true, "Name is required."] },
+  date: { type: String },
+  symptoms: [{ type: String, required: [true, "Symptom is required."] }],
+});
+
+const ConditionSchema = new Schema({
+  condition_id: { type: String, required: true, unique: true },
+  condition: { type: String, required: [true, "Condition is required."] },
+  date_of_diagnosis: { type: String },
+});
+
+const RecordSchema = new Schema({
+  record_id: { type: String, required: true, unique: true },
+  date: { type: String },
+  time: { type: String },
+  description: {
+    type: String,
+    required: [true, "description is required."],
+  },
+  pain_score: { type: Number },
+  trigger: { type: String },
+});
+
 const UserSchema = new Schema({
   user_id: { type: String, required: true, unique: true },
   name: {
@@ -29,34 +54,20 @@ const UserSchema = new Schema({
   //     message: `Passwords don't match.`,
   //   },
   // },
-  allergies: [
-    {
-      allergy_id: { type: String, required: true, unique: true },
-      name: { type: String, required: [true, "Name is required."] },
-      date: { type: String },
-      symptoms: [{ type: String, required: [true, "Symptom is required."] }],
-    },
-  ],
-  medical_conditions: [
-    {
-      condition_id: { type: String, required: true, unique: true },
-      condition: { type: String, required: [true, "Condition is required."] },
-      date_of_diagnosis: { type: String },
-    },
-  ],
-  records: [
-    {
-      record_id: { type: String, required: true, unique: true },
-      date: { type: String },
-      time: { type: String },
-      description: {
-        type: String,
-        required: [true, "description is required."],
-      },
-      pain_score: { type: Number },
-      trigger: { type: String },
-    },
-  ],
+  allergies: {
+    type: [AllergySchema],
+    required: false,
+  },
+
+  medical_conditions: {
+    type: [ConditionSchema],
+    required: false,
+  },
+
+  records: {
+    type: [RecordSchema],
+    required: false,
+  },
 });
 
 const User = mongoose.model("User", UserSchema);

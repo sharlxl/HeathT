@@ -3,9 +3,12 @@ import Button from "./Button";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { LOGIN } from "../redux/userSlice";
 
 const SignUpForm = () => {
   const [newSignUp, setNewSignUp] = useState({
+    user_id: uuidv4(),
     name: "",
     password: "",
   });
@@ -29,6 +32,7 @@ const SignUpForm = () => {
     setConfirmPassword(e.target.value);
   };
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const onSubmitForm = (e) => {
     e.preventDefault();
@@ -46,7 +50,7 @@ const SignUpForm = () => {
       console.log(newSignUp);
       axios
         .post("http://localhost:5001/users/create", {
-          user_id: uuidv4(),
+          user_id: newSignUp.user_id,
           name: newSignUp.name,
           password: newSignUp.password,
         })
@@ -60,7 +64,8 @@ const SignUpForm = () => {
           alert(err.response.data.message);
         });
     }
-    setNewSignUp({ name: "", password: "" });
+    dispatch(LOGIN(newSignUp));
+    setNewSignUp({ user_id: uuidv4(), name: "", password: "" });
     setConfirmPassword("");
     navigate("/main");
   };
