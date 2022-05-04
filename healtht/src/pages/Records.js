@@ -14,8 +14,8 @@ const Records = () => {
       <div className="sm:flex sm:h-full">
         <Header />
       </div>
-      <div className="h-full max-w-[70%] mx-auto min-w-[300px] sm:max-w-[50%] sm:min-w-[400px] bg-[#E8F3F1] overflow-auto">
-        <h1>New Record:</h1>
+      <div className="text-[#344B46] pt-10 px-5 h-full max-w-[70%] mx-auto min-w-[300px] sm:max-w-[50%] sm:min-w-[400px] bg-[#E8F3F1] overflow-auto">
+        <h1 className="text-4xl mb-5">My Records:</h1>
         <RecordEntry />
         {user.records
           .map((record, index) => (

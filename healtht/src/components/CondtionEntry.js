@@ -39,7 +39,7 @@ const CondtionEntry = () => {
     <form onSubmit={onSubmitCondition}>
       <label
         htmlFor="date"
-        className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+        className="block mb-2 text-sm font-medium text-[#6D9B91]"
       >
         Date:
       </label>
@@ -48,13 +48,13 @@ const CondtionEntry = () => {
         type="date"
         value={condition.date_of_diagnosis}
         onChange={onChangeDate}
-        className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC]"
         placeholder=""
       />
 
       <label
         htmlFor="condition"
-        className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+        className="block mb-2 text-sm font-medium text-[#6D9B91]"
       >
         Condition:
       </label>
@@ -63,7 +63,7 @@ const CondtionEntry = () => {
         type="text"
         value={condition.condition}
         onChange={onChangeCondition}
-        className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC]"
         placeholder="What condition were you diagnosed?"
         required
       />

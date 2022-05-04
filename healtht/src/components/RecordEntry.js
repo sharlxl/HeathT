@@ -71,7 +71,7 @@ const RecordEntry = () => {
     <form onSubmit={onSubmitRecord}>
       <label
         htmlFor="description"
-        className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+        className="block mb-2 text-sm font-medium text-[#6D9B91]"
       >
         How are you feeling today?
       </label>
@@ -80,13 +80,13 @@ const RecordEntry = () => {
         value={record.description}
         onChange={onChangeDesc}
         rows="4"
-        className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC]"
         placeholder="What happened? What are you feeling? what is the issue? etc"
         required
       />
       <label
         htmlFor="trigger"
-        className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+        className="block mb-2 text-sm font-medium text-[#6D9B91]"
       >
         Any Triggering Factors?
       </label>
@@ -95,15 +95,15 @@ const RecordEntry = () => {
         value={record.trigger}
         onChange={onChangeTrigger}
         rows="2"
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC]"
         placeholder="What could have cause it? What made it worse? what did you do prior to feeling the symptoms/discomfort?"
       />
       <label
         htmlFor="pain"
-        className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+        className="block mb-2 text-sm font-medium text-[#6D9B91]"
       >
-        Any pain associated with it?{" "}
-        <span>
+        Any pain associated with it?
+        <span className="float-right">
           {record.pain_score} - {record.painDescription}
         </span>
       </label>

@@ -85,59 +85,102 @@ const RecordCard = (props) => {
         />
       )}
       {edit ? (
-        <form onSubmit={onSubmitSave}>
-          <input
-            type="textarea"
-            value={editValues.description}
-            onChange={onChangeDescription}
-          />
-          <input
-            type="text"
-            value={editValues.trigger}
-            onChange={onChangeTrigger}
-          />
-          <input
-            onChange={onChangePain}
-            type="range"
-            list="tickmarks"
-            value={editValues.pain_score}
-            min="0"
-            max="10"
-            className="w-full"
-          />
-          <span>
-            {editValues.pain_score} - {painDescription}
-          </span>
-          <datalist id="tickmarks">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </datalist>
+        <div className="mt-14">
+          <form className="flex flex-col" onSubmit={onSubmitSave}>
+            <label
+              htmlFor="description"
+              className="block mb-2 text-sm font-medium text-[#6D9B91]"
+            >
+              How are you feeling today?
+            </label>
+            <textarea
+              id="description"
+              className=" my-1 p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC]"
+              type="textarea"
+              rows="4"
+              value={editValues.description}
+              onChange={onChangeDescription}
+            />
+            <label
+              htmlFor="trigger"
+              className="block mb-2 text-sm font-medium text-[#6D9B91]"
+            >
+              Any Triggering Factors?
+            </label>
+            <textarea
+              id="trigger"
+              className=" my-1 p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC]"
+              type="textarea"
+              rows="2"
+              value={editValues.trigger}
+              onChange={onChangeTrigger}
+            />
+            <label
+              htmlFor="pain"
+              className="block mb-2 text-sm font-medium text-[#6D9B91]"
+            >
+              Any pain associated with it?
+              <span className="float-right">
+                {editValues.pain_score} - {painDescription}
+              </span>
+            </label>
+            <input
+              className="w-full"
+              onChange={onChangePain}
+              type="range"
+              list="tickmarks"
+              value={editValues.pain_score}
+              min="0"
+              max="10"
+            />
 
-          <Button title="Save Change" type="Submit" placeholder="Save Change" />
-          <Button
-            title="Close"
-            type="button"
-            onClick={onClickClose}
-            placeholder="Close"
-          />
-        </form>
+            <datalist id="tickmarks">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </datalist>
+            <div className="flex justify-between">
+              <Button
+                title="Save Change"
+                type="Submit"
+                placeholder="Save Change"
+              />
+              <Button
+                title="Close"
+                type="button"
+                onClick={onClickClose}
+                placeholder="Close"
+              />
+            </div>
+          </form>
+        </div>
       ) : (
-        <div id={props.record_id}>
-          <p>
+        <div className="mt-14" id={props.record_id}>
+          <p className="rounded-t-md pl-5 py-1 text-xl bg-[#9FDFD1]">
             {props.date} - {props.time}
           </p>
-          <p>{props.description}</p>
-          <p>{props.trigger}</p>
-          <p>{props.pain_score}</p>
+          <p>Record:</p>
+          <p className="ml-2 pl-5 py-1 border-t border-l-2 border-[#9FDFD1]">
+            {props.description}
+          </p>
+          <p>Triggers:</p>
+          <p className="ml-2 pl-5 py-1 border-t border-l-2 border-[#9FDFD1]">
+            {props.trigger}
+          </p>
+          <p className="">
+            Pain Score:
+            <span class="px-1.5 ml-3 rounded-md bg-[#9FDFD1]">
+              {props.pain_score}
+            </span>
+          </p>
           <Button
             title="Edit"
             type="button"

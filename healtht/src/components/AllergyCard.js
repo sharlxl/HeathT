@@ -76,43 +76,85 @@ const AllergyCard = (props) => {
         />
       )}
       {edit ? (
-        <form onSubmit={onSubmitSave}>
-          <input type="text" value={editValues.date} onChange={onChangeDate} />
-          <input
-            type="text"
-            value={editValues.name}
-            onChange={onChangeCondition}
-          />
-          <input
-            type="text"
-            value={editValues.symptoms}
-            onChange={onChangeSymptoms}
-          />
-
-          <Button title="Save Change" type="Submit" placeholder="Save Change" />
-          <Button
-            title="Close"
-            type="button"
-            onClick={onClickClose}
-            placeholder="Close"
-          />
-        </form>
+        <div className="mt-14">
+          <form className="flex flex-col" onSubmit={onSubmitSave}>
+            <label
+              htmlFor="date"
+              className="block mb-2 text-sm font-medium text-[#6D9B91]"
+            >
+              Date:
+            </label>
+            <input
+              id="date"
+              className=" my-1 p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC]"
+              type="date"
+              value={editValues.date}
+              onChange={onChangeDate}
+            />
+            <label
+              htmlFor="name"
+              className="block mb-2 text-sm font-medium text-[#6D9B91]"
+            >
+              Name:
+            </label>
+            <input
+              id="name"
+              className=" my-1 p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC]"
+              type="text"
+              value={editValues.name}
+              onChange={onChangeCondition}
+            />
+            <label
+              htmlFor="symptoms"
+              className="block mb-2 text-sm font-medium text-[#6D9B91]"
+            >
+              Symptoms: (seperate your symptoms with a .)
+            </label>
+            <input
+              id="symptoms"
+              className=" my-1 p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC]"
+              type="text"
+              value={editValues.symptoms}
+              onChange={onChangeSymptoms}
+            />
+            <div className="flex justify-between">
+              <Button
+                title="Save Changes"
+                type="Submit"
+                placeholder="Save Changes"
+              />
+              <Button
+                title="Close"
+                type="button"
+                onClick={onClickClose}
+                placeholder="Close"
+              />
+            </div>
+          </form>
+        </div>
       ) : (
-        <div id={props.allergy_id}>
-          <p>{props.date}</p>
-          <p>{props.name}</p>
-          <p>{props.symptoms}</p>
-          <Button
-            title="Edit"
-            type="button"
-            placeholder={<EditIcon />}
-            onClick={onClickEdit}
-          />
+        <div className="mt-14" id={props.allergy_id}>
+          <p className="pl-5 py-1">Diagnosed on {props.date}</p>
+          <p className="pl-5 py-1 text-xl bg-[#9FDFD1] rounded-t-md">
+            {props.name}
+          </p>
+          <div className="rounded-b-md border-b-2 border-x-2 border-[#9FDFD1] bg-[#E8F3F1]">
+            {props.symptoms.map((symptom) => {
+              return <p className="pl-5 py-2">{symptom}</p>;
+            })}
+          </div>
+
           <Button
             onClick={delCheckModal}
             title="Delete"
             type="button"
             placeholder={<DelIcon />}
+          />
+          <Button
+            title="Edit"
+            type="button"
+            placeholder={<EditIcon />}
+            onClick={onClickEdit}
           />
         </div>
       )}

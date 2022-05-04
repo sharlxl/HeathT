@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "./Button";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const SignUpForm = () => {
   const [newSignUp, setNewSignUp] = useState({
@@ -28,6 +29,7 @@ const SignUpForm = () => {
     setConfirmPassword(e.target.value);
   };
 
+  const navigate = useNavigate();
   const onSubmitForm = (e) => {
     e.preventDefault();
     if (newSignUp.password.length < 8) {
@@ -50,8 +52,8 @@ const SignUpForm = () => {
         })
         .then((res) => {
           console.log(res.data);
-          let token = res.data.token;
-          localStorage.setItem("SavedToken", "Bearer " + token);
+          // let token = res.data.token;
+          // localStorage.setItem("SavedToken", "Bearer " + token);
         })
         .catch((err) => {
           console.log(err);
@@ -60,13 +62,18 @@ const SignUpForm = () => {
     }
     setNewSignUp({ name: "", password: "" });
     setConfirmPassword("");
+    navigate("/main");
+  };
+
+  const onClickBack = () => {
+    navigate("/");
   };
 
   return (
     <form onSubmit={onSubmitForm}>
       <label
         htmlFor="name"
-        className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+        className="block mb-2 text-sm font-medium text-[#6D9B91]"
       >
         Name:
       </label>
@@ -75,12 +82,12 @@ const SignUpForm = () => {
         type="text"
         value={newSignUp.name}
         onChange={onChangeName}
-        className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC]"
         placeholder="What is your name?"
       />
       <label
         htmlFor="password"
-        className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+        className="block mb-2 text-sm font-medium text-[#6D9B91]"
       >
         Password:
       </label>
@@ -90,13 +97,13 @@ const SignUpForm = () => {
         type="password"
         value={newSignUp.password}
         onChange={onChangePassword}
-        className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC]"
         placeholder="Please enter a password"
       />
 
       <label
         htmlFor="confirmPassword"
-        className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+        className="block mb-2 text-sm font-medium text-[#6D9B91]"
       >
         Confirm your password:
       </label>
@@ -105,11 +112,20 @@ const SignUpForm = () => {
         type="password"
         value={confirmPassword}
         onChange={onChangeConfirm}
-        className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC]"
         placeholder="Confirm your password"
       />
-      {error ? <span>{errorMessage}</span> : ""}
-      <Button type="submit" placeholder="submit" />
+      {error ? (
+        <p className="text-red-500 text-sm h-14 text-center py-2">
+          {errorMessage}
+        </p>
+      ) : (
+        <div className="h-14"> </div>
+      )}
+      <Button type="submit" placeholder="SUBMIT" />
+      <div className="float-left">
+        <Button onClick={onClickBack} type="button" placeholder="BACK" />
+      </div>
     </form>
   );
 };
