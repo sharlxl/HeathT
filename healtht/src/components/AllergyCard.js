@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import Button from "./Button";
 import EditIcon from "../svg/EditIcon";
 import DelIcon from "../svg/DelIcon";
-import { useDispatch } from "react-redux";
-import { DEL_ALLERGY, EDIT_ALLERGY } from "../redux/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { DEL_ALLERGY, EDIT_ALLERGY, selectUser } from "../redux/userSlice";
 import Modal from "./Modal";
+import axios from "axios";
 
 const AllergyCard = (props) => {
   const [edit, setEdit] = useState(false);
@@ -22,7 +23,7 @@ const AllergyCard = (props) => {
     setEditValues({
       date: props.date,
       name: props.name,
-      symptoms: [],
+      symptoms: props.symptoms,
     });
     setConvertedSymptoms(props.symptoms.join());
     setEdit(true);
@@ -33,7 +34,7 @@ const AllergyCard = (props) => {
       return { ...prevState, date: e.target.value };
     });
   };
-  const onChangeCondition = (e) => {
+  const onChangeName = (e) => {
     setEditValues((prevState) => {
       return { ...prevState, name: e.target.value };
     });
@@ -48,16 +49,49 @@ const AllergyCard = (props) => {
   const onClickClose = () => {
     setEdit(false);
   };
+
+  const user = useSelector(selectUser);
+  const user_id = user.user_id;
+  const allergy_id = props.allergy_id;
   const dispatch = useDispatch();
+
   const onSubmitSave = (e) => {
     e.preventDefault();
+    console.log(editValues);
     const index = props.index;
     dispatch(EDIT_ALLERGY({ index, editValues }));
-    console.log(editValues);
+    axios
+      .put(`http://localhost:5001/allergies/edit`, {
+        user_id: user.user_id,
+        allergy_id: props.allergy_id,
+        name: editValues.name,
+        date: editValues.date,
+        symptoms: editValues.symptoms,
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
     setEdit(false);
   };
 
   const [checkDel, setCheckDel] = useState(false);
+  const onClickDel = () => {
+    const index = props.index;
+    dispatch(DEL_ALLERGY({ index }));
+    axios
+      .delete(`http://localhost:5001/allergies/delete`, {
+        data: {
+          user_id,
+          allergy_id,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+    setCheckDel(false);
+  };
 
   const delCheckModal = () => {
     if (checkDel) {
@@ -65,12 +99,6 @@ const AllergyCard = (props) => {
     } else {
       setCheckDel(true);
     }
-  };
-
-  const onClickDel = () => {
-    const index = props.index;
-    dispatch(DEL_ALLERGY({ index }));
-    setCheckDel(false);
   };
 
   return (
@@ -109,7 +137,7 @@ const AllergyCard = (props) => {
               className=" my-1 p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC]"
               type="text"
               value={editValues.name}
-              onChange={onChangeCondition}
+              onChange={onChangeName}
             />
             <label
               htmlFor="symptoms"
