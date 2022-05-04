@@ -33,7 +33,7 @@ const UserSchema = new Schema({
     {
       allergy_id: { type: String, required: true, unique: true },
       name: { type: String, required: [true, "Name is required."] },
-      date: { type: Date },
+      date: { type: String },
       symptoms: [{ type: String, required: [true, "Symptom is required."] }],
     },
   ],
@@ -41,19 +41,19 @@ const UserSchema = new Schema({
     {
       condition_id: { type: String, required: true, unique: true },
       condition: { type: String, required: [true, "Condition is required."] },
-      date_of_diagnosis: { type: Date },
+      date_of_diagnosis: { type: String },
     },
   ],
   records: [
     {
       record_id: { type: String, required: true, unique: true },
-      date: { type: Date },
-      time: { type: Date },
+      date: { type: String },
+      time: { type: String },
       description: {
         type: String,
         required: [true, "description is required."],
       },
-      pain_score: { type: String },
+      pain_score: { type: Number },
       trigger: { type: String },
     },
   ],

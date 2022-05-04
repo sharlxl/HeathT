@@ -66,6 +66,7 @@ const RecordEntry = () => {
       pain_score: 0,
       painDescription: "No Pain",
     });
+    console.log(record);
   };
   return (
     <form onSubmit={onSubmitRecord}>

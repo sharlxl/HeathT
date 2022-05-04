@@ -14,12 +14,17 @@ const AllergyCard = (props) => {
     symptoms: [],
   });
 
+  const [convertedSymptoms, setConvertedSymptoms] = useState("");
+
   const onClickEdit = () => {
+    // console.log(props.symptoms.join());
+
     setEditValues({
       date: props.date,
       name: props.name,
-      symptoms: props.symptoms,
+      symptoms: [],
     });
+    setConvertedSymptoms(props.symptoms.join());
     setEdit(true);
   };
 
@@ -34,8 +39,9 @@ const AllergyCard = (props) => {
     });
   };
   const onChangeSymptoms = (e) => {
+    setConvertedSymptoms(e.target.value);
     setEditValues((prevState) => {
-      return { ...prevState, symptoms: e.target.value };
+      return { ...prevState, symptoms: convertedSymptoms.split(",") };
     });
   };
 
@@ -47,6 +53,7 @@ const AllergyCard = (props) => {
     e.preventDefault();
     const index = props.index;
     dispatch(EDIT_ALLERGY({ index, editValues }));
+    console.log(editValues);
     setEdit(false);
   };
 
@@ -114,7 +121,7 @@ const AllergyCard = (props) => {
               id="symptoms"
               className=" my-1 p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC]"
               type="text"
-              value={editValues.symptoms}
+              value={convertedSymptoms}
               onChange={onChangeSymptoms}
             />
             <div className="flex justify-between">

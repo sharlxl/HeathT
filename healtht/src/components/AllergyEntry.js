@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Button from "./Button";
 import { v4 as uuidv4 } from "uuid";
-import { useDispatch } from "react-redux";
-import { ADD_ALLERGY } from "../redux/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { ADD_ALLERGY, selectUser } from "../redux/userSlice";
+import axios from "axios";
 
 const AllergyEntry = () => {
   const [allergy, setAllergy] = useState({
@@ -30,18 +31,28 @@ const AllergyEntry = () => {
     e.preventDefault();
     setSymptomsString(e.target.value);
     const splitSymptoms = symptomsString
-      .split(".")
+      .split(",")
       .map((symptom) => symptom.trim());
     setAllergy((prevState) => {
       return { ...prevState, symptoms: splitSymptoms };
     });
   };
+  const user = useSelector(selectUser);
+  const user_id = user.user_id;
   const dispatch = useDispatch();
   const onSubmitAllergy = (e) => {
     e.preventDefault();
     dispatch(ADD_ALLERGY({ allergy }));
     // console.log(allergy);
-
+    axios
+      .post(`http://localhost:5001/allergies/new`, {
+        user_id,
+        allergy,
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
     setAllergy({
       allergy_id: uuidv4(),
       date: "",
@@ -87,7 +98,7 @@ const AllergyEntry = () => {
         htmlFor="symptoms"
         className="block mb-2 text-sm font-medium text-[#6D9B91]"
       >
-        Symptoms: (seperate your symptoms with a .)
+        Symptoms: (seperate your symptoms with a ,)
       </label>
       <input
         id="symptoms"

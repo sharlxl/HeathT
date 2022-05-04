@@ -8,7 +8,7 @@ seedUsers = [
       {
         allergy_id: "2",
         name: "NSAIDS",
-        date: "2007-04-25T15:40:50.776Z",
+        date: "2007-04-25",
         symptoms: ["rashes", "diffculty in breathing"],
       },
     ],
@@ -17,20 +17,20 @@ seedUsers = [
       {
         condition_id: "3",
         condition: "Diabetes",
-        date_of_diagnosis: "2007-04-25T15:40:50.776Z",
+        date_of_diagnosis: "2007-04-25",
       },
       {
         condition_id: "100",
         condition: "Backpain",
-        date_of_diagnosis: "2003-04-25T15:40:50.776Z",
+        date_of_diagnosis: "2003-04-25",
       },
     ],
 
     records: [
       {
         record_id: "4",
-        date: "2022-04-25T15:40:50.776Z",
-        time: "2022-04-25T15:40:50.776Z",
+        date: "2022-04-25",
+        time: "15:40:50",
         description:
           "Pain over my right wrist, caught a pretty hard pass from my friend, the angle of my catch might be off",
         pain_score: 2,
@@ -38,16 +38,16 @@ seedUsers = [
       },
       {
         record_id: "5",
-        date: "2022-04-27T15:40:50.776Z",
-        time: "2022-04-27T15:40:50.776Z",
+        date: "2022-04-27",
+        time: "15:40:50",
         description: "Right wrist throbbing intermittently",
         pain_score: 3,
         trigger: "While using computer",
       },
       {
         record_id: "6",
-        date: "2022-04-30T15:40:50.776Z",
-        time: "2022-04-30T15:40:50.776Z",
+        date: "2022-04-30",
+        time: "15:40:50",
         description:
           "sudden sharp pain on my right wrist, woke me up from sleep",
         pain_score: 6,
@@ -55,8 +55,8 @@ seedUsers = [
       },
       {
         record_id: "7",
-        date: "2022-05-01T15:40:50.776Z",
-        time: "2022-05-01T15:40:50.776Z",
+        date: "2022-05-01",
+        time: "15:40:50",
         description:
           "consistent dull aching pain on right wrist, sharp pain when pressure applied.",
         pain_score: 6,
