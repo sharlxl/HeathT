@@ -154,7 +154,7 @@ const ConditionCard = (props) => {
             </label>
             <input
               id="conditions"
-              className=" my-1 p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC]"
+              className=" my-1 p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC] caret-[#6D9B91]"
               type="text"
               value={editValues.condition}
               onChange={onChangeCondition}
@@ -167,7 +167,7 @@ const ConditionCard = (props) => {
             </label>
             <input
               id="date"
-              className=" my-1 p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC]"
+              className=" my-1 p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC] caret-[#6D9B91]"
               type="date"
               value={editValues.date_of_diagnosis}
               onChange={onChangeDate}

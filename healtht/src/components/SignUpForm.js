@@ -87,7 +87,7 @@ const SignUpForm = () => {
         type="text"
         value={newSignUp.name}
         onChange={onChangeName}
-        className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC]"
+        className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC] caret-[#6D9B91]"
         placeholder="What is your name?"
       />
       <label
@@ -102,7 +102,7 @@ const SignUpForm = () => {
         type="password"
         value={newSignUp.password}
         onChange={onChangePassword}
-        className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC]"
+        className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC] caret-[#6D9B91]"
         placeholder="Please enter a password"
       />
 
@@ -117,7 +117,7 @@ const SignUpForm = () => {
         type="password"
         value={confirmPassword}
         onChange={onChangeConfirm}
-        className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC]"
+        className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC] caret-[#6D9B91]"
         placeholder="Confirm your password"
       />
       {error ? (

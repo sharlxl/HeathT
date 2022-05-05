@@ -121,7 +121,7 @@ const AllergyEntry = () => {
           type="text"
           value={allergy.name}
           onChange={onChangeName}
-          className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC]"
+          className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC] caret-[#6D9B91]"
           placeholder="What are you allergic to?"
           required
         />
@@ -136,7 +136,7 @@ const AllergyEntry = () => {
           type="text"
           value={symptomsString}
           onChange={onChangeSymptoms}
-          className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC]"
+          className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC] caret-[#6D9B91]"
           placeholder="what symptoms do you exhibit?"
           required
         />

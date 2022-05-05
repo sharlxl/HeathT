@@ -1,14 +1,16 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import { selectUser } from "../redux/userSlice";
 
 const MainPage = () => {
+  const navigate = useNavigate();
   const user = useSelector(selectUser);
-  // console.log(user);
-  // if (!user) {
-  //   return <p>something is wrong</p>;
-  // }
+  if (!user) {
+    alert("Please Log in");
+    navigate("/");
+  }
   const styledName = user.name[0].toUpperCase() + user.name.substring(1);
 
   return (

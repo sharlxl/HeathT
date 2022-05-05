@@ -89,7 +89,7 @@ const CondtionEntry = () => {
           type="date"
           value={condition.date_of_diagnosis}
           onChange={onChangeDate}
-          className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC]"
+          className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC] caret-[#6D9B91]"
           placeholder=""
         />
 
@@ -104,7 +104,7 @@ const CondtionEntry = () => {
           type="text"
           value={condition.condition}
           onChange={onChangeCondition}
-          className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC]"
+          className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC] caret-[#6D9B91]"
           placeholder="What condition were you diagnosed?"
           required
         />

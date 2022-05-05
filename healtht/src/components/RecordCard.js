@@ -172,7 +172,7 @@ const RecordCard = (props) => {
             </label>
             <textarea
               id="description"
-              className=" my-1 p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC]"
+              className=" my-1 p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC] caret-[#6D9B91]"
               type="textarea"
               rows="4"
               value={editValues.description}
@@ -186,7 +186,7 @@ const RecordCard = (props) => {
             </label>
             <textarea
               id="trigger"
-              className=" my-1 p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC]"
+              className=" my-1 p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC] caret-[#6D9B91]"
               type="textarea"
               rows="2"
               value={editValues.trigger}

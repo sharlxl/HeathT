@@ -31,7 +31,7 @@ const AccordionLayout = ({
         </div>
       </div>
       {activeIndex === index && (
-        <div className="w-5/6 border-l-2 border-[#28D5BC] shadow-md rounded-b-md shadow-[rgba(52,75,70,0.3)] p-4 mb-6 text-[#344B46]">
+        <div className="w-5/6 border-l-2 border-[#28D5BC] shadow-md rounded-b-md shadow-[rgba(52,75,70,0.3)] p-4 mb-6 text-[#344B46] transition ease-in duration-300">
           {children}
         </div>
       )}

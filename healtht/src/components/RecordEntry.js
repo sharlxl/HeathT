@@ -123,7 +123,7 @@ const RecordEntry = () => {
           value={record.description}
           onChange={onChangeDesc}
           rows="4"
-          className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC]"
+          className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC] caret-[#6D9B91]"
           placeholder="What happened? What are you feeling? what is the issue? etc"
           required
         />
@@ -138,7 +138,7 @@ const RecordEntry = () => {
           value={record.trigger}
           onChange={onChangeTrigger}
           rows="2"
-          className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC]"
+          className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC] caret-[#6D9B91]"
           placeholder="What could have cause it? What made it worse? what did you do prior to feeling the symptoms/discomfort?"
         />
         <label

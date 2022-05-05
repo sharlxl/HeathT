@@ -1,6 +1,6 @@
 import React from "react";
 
-const Input = (props) => {
+const TextInput = (props) => {
   const onChangeInput = (e) => props.setState(e.target.value);
 
   return (
@@ -9,9 +9,9 @@ const Input = (props) => {
       placeholder={props.placeholder}
       onChange={onChangeInput}
       value={props.state}
-      className="bg-gray-200 appearance-none border-2 border-gray-200 rounded max-w-[300px] py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#28D5BC] m-[0.5rem] text-center"
+      className="bg-gray-200 appearance-none border-2 border-gray-200 rounded max-w-[300px] py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#28D5BC] m-[0.5rem] text-center caret-[#6D9B91]"
     />
   );
 };
 
-export default Input;
+export default TextInput;

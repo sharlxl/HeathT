@@ -180,7 +180,7 @@ const AllergyCard = (props) => {
             </label>
             <input
               id="name"
-              className=" my-1 p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC]"
+              className=" my-1 p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC] caret-[#6D9B91]"
               type="text"
               value={editValues.name}
               onChange={onChangeName}
@@ -193,7 +193,7 @@ const AllergyCard = (props) => {
             </label>
             <input
               id="symptoms"
-              className=" my-1 p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC]"
+              className=" my-1 p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC] caret-[#6D9B91]"
               type="text"
               value={convertedSymptoms}
               onChange={onChangeSymptoms}
