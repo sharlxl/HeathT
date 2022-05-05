@@ -3,8 +3,9 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import TextInput from "../components/TextInput";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { LOGIN, selectUser } from "../redux/userSlice";
+import { useDispatch } from "react-redux";
+import { LOGIN } from "../redux/userSlice";
+import logo2 from "../images/logo2.png";
 
 const LoginPage = () => {
   const [name, setName] = useState();
@@ -33,7 +34,7 @@ const LoginPage = () => {
         className="flex flex-col max-w-[18rem] mx-auto mt-[5rem]"
         onSubmit={onSumbitLogin}
       >
-        <h1 className="text-5xl text-center my-[3rem]">HealthT</h1>
+        <img className="w-[80%] self-center" src={logo2} alt="HealthT" />
         <TextInput
           state={name}
           setState={setName}

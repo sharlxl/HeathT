@@ -19,7 +19,7 @@ const MainPage = () => {
         <Header />
       </div>
       <div className="pt-10 px-5 text-[#344B46] h-full max-w-[70%] mx-auto min-w-[300px] sm:max-w-[50%] sm:min-w-[400px] bg-[#E8F3F1] overflow-auto">
-        <h1 className="text-4xl mb-5">Hi, {styledName}</h1>
+        <h1 className="text-4xl mb-5">Your Summary</h1>
         <p className="">Number of Allergies:</p>
         <p className="text-xl bg-slate-100 mx-2 pl-2">
           {user.allergies ? user.allergies.length : 0}
