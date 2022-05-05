@@ -6,6 +6,12 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { LOGIN } from "../redux/userSlice";
 
+const STYLES = {
+  label: "block mb-2 text-sm font-medium text-[#6D9B91]",
+  input:
+    "block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC] caret-[#6D9B91]",
+};
+
 const SignUpForm = () => {
   const [newSignUp, setNewSignUp] = useState({
     user_id: uuidv4(),
@@ -75,10 +81,7 @@ const SignUpForm = () => {
 
   return (
     <form onSubmit={onSubmitForm}>
-      <label
-        htmlFor="name"
-        className="block mb-2 text-sm font-medium text-[#6D9B91]"
-      >
+      <label htmlFor="name" className={STYLES.label}>
         Name:
       </label>
       <input
@@ -86,13 +89,10 @@ const SignUpForm = () => {
         type="text"
         value={newSignUp.name}
         onChange={onChangeName}
-        className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC] caret-[#6D9B91]"
+        className={STYLES.input}
         placeholder="What is your name?"
       />
-      <label
-        htmlFor="password"
-        className="block mb-2 text-sm font-medium text-[#6D9B91]"
-      >
+      <label htmlFor="password" className={STYLES.label}>
         Password:
       </label>
 
@@ -101,14 +101,11 @@ const SignUpForm = () => {
         type="password"
         value={newSignUp.password}
         onChange={onChangePassword}
-        className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC] caret-[#6D9B91]"
+        className={STYLES.input}
         placeholder="Please enter a password"
       />
 
-      <label
-        htmlFor="confirmPassword"
-        className="block mb-2 text-sm font-medium text-[#6D9B91]"
-      >
+      <label htmlFor="confirmPassword" className={STYLES.label}>
         Confirm your password:
       </label>
       <input
@@ -116,7 +113,7 @@ const SignUpForm = () => {
         type="password"
         value={confirmPassword}
         onChange={onChangeConfirm}
-        className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC] caret-[#6D9B91]"
+        className={STYLES.input}
         placeholder="Confirm your password"
       />
       {error ? (

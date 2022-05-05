@@ -7,17 +7,37 @@ const FAQAccordion = () => {
   return (
     <div className="w-auto flex flex-col justify-center items-center">
       <AccordionLayout
-        title="Accordion 1"
+        title="Random Fact 1"
         index={1}
         activeIndex={activeIndex}
         setActiveIndex={setActiveIndex}
       >
-        Accordion 1 Content
+        Your eyes blink around 20 times a minute. <br />
+        <br />
+        <br />
+        And now i have made you conscious about your eyes blinking :D
+      </AccordionLayout>
+      <AccordionLayout
+        title="Random Fact 2"
+        index={2}
+        activeIndex={activeIndex}
+        setActiveIndex={setActiveIndex}
+      >
+        We make about 1 to 1.6 litres of saliva a day.
+      </AccordionLayout>
+      <AccordionLayout
+        title="Random Fact 3"
+        index={3}
+        activeIndex={activeIndex}
+        setActiveIndex={setActiveIndex}
+      >
+        There are more bacteria in your mouth than there are people in the
+        world.
       </AccordionLayout>
 
       <AccordionLayout
         title="External Links"
-        index={2}
+        index={4}
         activeIndex={activeIndex}
         setActiveIndex={setActiveIndex}
       >

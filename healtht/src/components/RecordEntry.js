@@ -6,6 +6,12 @@ import { ADD_RECORD, selectUser } from "../redux/userSlice";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
+const STYLES = {
+  label: "block mb-2 text-sm font-medium text-[#6D9B91]",
+  input:
+    "block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC] caret-[#6D9B91]",
+};
+
 const RecordEntry = () => {
   const [record, setRecord] = useState({
     date: new Date().toLocaleDateString(),
@@ -111,10 +117,7 @@ const RecordEntry = () => {
         pauseOnHover
       />
       <form onSubmit={onSubmitRecord}>
-        <label
-          htmlFor="description"
-          className="block mb-2 text-sm font-medium text-[#6D9B91]"
-        >
+        <label htmlFor="description" className={STYLES.label}>
           How are you feeling today?
         </label>
         <textarea
@@ -122,14 +125,11 @@ const RecordEntry = () => {
           value={record.description}
           onChange={onChangeDesc}
           rows="4"
-          className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC] caret-[#6D9B91]"
+          className={STYLES.input}
           placeholder="What happened? What are you feeling? what is the issue? etc"
           required
         />
-        <label
-          htmlFor="trigger"
-          className="block mb-2 text-sm font-medium text-[#6D9B91]"
-        >
+        <label htmlFor="trigger" className={STYLES.label}>
           Any Triggering Factors?
         </label>
         <textarea
@@ -137,13 +137,10 @@ const RecordEntry = () => {
           value={record.trigger}
           onChange={onChangeTrigger}
           rows="2"
-          className="block p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC] caret-[#6D9B91]"
+          className={STYLES.input}
           placeholder="What could have cause it? What made it worse? what did you do prior to feeling the symptoms/discomfort?"
         />
-        <label
-          htmlFor="pain"
-          className="block mb-2 text-sm font-medium text-[#6D9B91]"
-        >
+        <label htmlFor="pain" className={STYLES.label}>
           Any pain associated with it?
           <span className="float-right">
             {record.pain_score} - {record.painDescription}

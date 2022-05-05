@@ -8,6 +8,12 @@ import Modal from "./Modal";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
+const STYLES = {
+  label: "block mb-2 text-sm font-medium text-[#6D9B91]",
+  input:
+    " my-1 p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC] caret-[#6D9B91]",
+};
+
 const RecordCard = (props) => {
   const [edit, setEdit] = useState(false);
   const [editValues, setEditValues] = useState({
@@ -163,38 +169,29 @@ const RecordCard = (props) => {
       {edit ? (
         <div className="mt-14">
           <form className="flex flex-col" onSubmit={onSubmitSave}>
-            <label
-              htmlFor="description"
-              className="block mb-2 text-sm font-medium text-[#6D9B91]"
-            >
+            <label htmlFor="description" className={STYLES.label}>
               How are you feeling today?
             </label>
             <textarea
               id="description"
-              className=" my-1 p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC] caret-[#6D9B91]"
+              className={STYLES.input}
               type="textarea"
               rows="4"
               value={editValues.description}
               onChange={onChangeDescription}
             />
-            <label
-              htmlFor="trigger"
-              className="block mb-2 text-sm font-medium text-[#6D9B91]"
-            >
+            <label htmlFor="trigger" className={STYLES.label}>
               Any Triggering Factors?
             </label>
             <textarea
               id="trigger"
-              className=" my-1 p-2.5 w-full text-sm text-[#344B46] bg-[#D8E2E0] rounded-lg border border-[#6D9B91] focus:outline-[#28D5BC] caret-[#6D9B91]"
+              className={STYLES.input}
               type="textarea"
               rows="2"
               value={editValues.trigger}
               onChange={onChangeTrigger}
             />
-            <label
-              htmlFor="pain"
-              className="block mb-2 text-sm font-medium text-[#6D9B91]"
-            >
+            <label htmlFor="pain" className={STYLES.label}>
               Any pain associated with it?
               <span className="float-right">
                 {editValues.pain_score} - {painDescription}
