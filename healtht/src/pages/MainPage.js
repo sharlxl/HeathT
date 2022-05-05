@@ -11,7 +11,6 @@ const MainPage = () => {
     alert("Please Log in");
     navigate("/");
   }
-  const styledName = user.name[0].toUpperCase() + user.name.substring(1);
 
   return (
     <div className="h-screen bg-[rgba(206,228,213,0.3)] sm:flex">
