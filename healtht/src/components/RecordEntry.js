@@ -150,7 +150,7 @@ const RecordEntry = () => {
             {record.pain_score} - {record.painDescription}
           </span>
         </label>
-        <div className="w-full">
+        <div className="w-full accent-[#28D5BC]">
           <input
             onChange={onChangePainScore}
             type="range"

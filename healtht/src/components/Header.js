@@ -32,7 +32,7 @@ const Header = () => {
         <MenuIcon />
       </button>
       {dropdown ? (
-        <div className="origin-top-right absolute top-[3.1rem] right-[0.5rem] rounded-md shadow-lg bg-[rgba(40,213,188,1)] text-black flex flex-col w-[12rem] sm:hidden">
+        <div className="z-50 origin-top-right absolute top-[3.1rem] right-[0.5rem] rounded-md shadow-lg bg-[rgba(40,213,188,1)] text-black flex flex-col w-[12rem] sm:hidden">
           <ul className="p-5">
             <li className="mt-0.5 p-[0.5rem] shadow-sm ">
               <NavLink to="/main">Home</NavLink>

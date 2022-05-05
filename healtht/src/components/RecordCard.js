@@ -202,7 +202,7 @@ const RecordCard = (props) => {
               </span>
             </label>
             <input
-              className="w-full"
+              className="w-full accent-[#28D5BC]"
               onChange={onChangePain}
               type="range"
               list="tickmarks"
@@ -241,7 +241,7 @@ const RecordCard = (props) => {
         </div>
       ) : (
         <div className="mt-14" id={props.record_id}>
-          <p className="rounded-t-md pl-5 py-1 text-xl bg-[#9FDFD1]">
+          <p className="rounded-tl-md rounded-br-md pl-5 py-1 text-xl bg-[#9FDFD1]">
             {props.date} - {props.time}
           </p>
           <p>Record:</p>

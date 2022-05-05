@@ -216,10 +216,10 @@ const AllergyCard = (props) => {
       ) : (
         <div className="mt-14">
           <p className="pl-5 py-1">Diagnosed on {props.date}</p>
-          <p className="pl-5 py-1 text-xl bg-[#9FDFD1] rounded-t-md">
+          <p className="pl-5 py-1 text-xl bg-[#9FDFD1] rounded-tl-md">
             {props.name}
           </p>
-          <div className="rounded-b-md border-b-2 border-x-2 border-[#9FDFD1] bg-[#E8F3F1]">
+          <div className=" rounded-br-md border-b-2 border-x-2 border-[#9FDFD1] bg-[#E8F3F1]">
             {props.symptoms.map((symptom, index) => {
               return (
                 <p key={index} className="pl-5 py-2">

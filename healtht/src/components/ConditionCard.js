@@ -189,7 +189,7 @@ const ConditionCard = (props) => {
         </div>
       ) : (
         <div className="mt-14" id={props.condition_id}>
-          <p className="pl-5 py-1 text-xl bg-[#9FDFD1] rounded-md">
+          <p className="pl-5 py-1 text-xl bg-[#9FDFD1] rounded-tl-md rounded-br-md">
             {props.condition}
           </p>
           <p className="pl-5 py-1"> Since {props.date_of_diagnosis}</p>
