@@ -15,7 +15,6 @@ const AllergyEntry = () => {
   });
   const [symptomsString, setSymptomsString] = useState("");
 
-  console.log(allergy);
   const onChangeDate = (e) => {
     setAllergy((prevState) => {
       return { ...prevState, date: e.target.value };
@@ -38,13 +37,14 @@ const AllergyEntry = () => {
       return { ...prevState, symptoms: splitSymptoms };
     });
   };
+
   const user = useSelector(selectUser);
   const user_id = user.user_id;
   const dispatch = useDispatch();
+
   const onSubmitAllergy = (e) => {
     e.preventDefault();
     dispatch(ADD_ALLERGY({ allergy }));
-    // console.log(allergy);
     axios
       .post(`http://localhost:5001/allergies/new`, {
         user_id,

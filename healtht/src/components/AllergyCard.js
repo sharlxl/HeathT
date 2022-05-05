@@ -19,8 +19,6 @@ const AllergyCard = (props) => {
   const [convertedSymptoms, setConvertedSymptoms] = useState("");
 
   const onClickEdit = () => {
-    // console.log(props.symptoms.join());
-
     setEditValues({
       date: props.date,
       name: props.name,
@@ -56,7 +54,6 @@ const AllergyCard = (props) => {
 
   const onSubmitSave = (e) => {
     e.preventDefault();
-    console.log(editValues);
     const index = props.index;
     dispatch(EDIT_ALLERGY({ index, editValues }));
     axios

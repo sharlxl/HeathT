@@ -11,28 +11,19 @@ const LoginPage = () => {
   const [password, setPassword] = useState();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const user = useSelector(selectUser);
-
-  console.log(user);
 
   const onSumbitLogin = (e) => {
     e.preventDefault();
-    console.log(name, password);
     axios
-      .post(
-        "http://localhost:5001/users/login",
-        { name, password }
-        //       { withCredentials: true }
-      )
+      .post("http://localhost:5001/users/login", { name, password })
       .then((res) => {
-        console.log("response", res.data);
         dispatch(
           LOGIN({
             ...res.data.user,
           })
         );
         navigate("/main");
-      }) //axios try catch function to capture the errors
+      })
       .catch((err) => err);
   };
 

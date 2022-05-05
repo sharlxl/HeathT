@@ -47,7 +47,7 @@ const SignUpForm = () => {
     } else {
       setError(false);
       setErrorMessage("");
-      console.log(newSignUp);
+
       axios
         .post("http://localhost:5001/users/create", {
           user_id: newSignUp.user_id,
@@ -60,7 +60,6 @@ const SignUpForm = () => {
           // localStorage.setItem("SavedToken", "Bearer " + token);
         })
         .catch((err) => {
-          console.log(err);
           alert(err.response.data.message);
         });
     }

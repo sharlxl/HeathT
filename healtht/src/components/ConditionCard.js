@@ -52,7 +52,6 @@ const ConditionCard = (props) => {
         date_of_diagnosis: editValues.date_of_diagnosis,
       })
       .then((res) => {
-        // console.log(res.data);
         toast.success(res.data.message, {
           position: "top-left",
           autoClose: 5000,

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import MenuIcon from "../svg/MenuIcon";
 import Logo from "../images/placeholderLogo.png";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { LOGOUT, selectUser } from "../redux/userSlice";
+import { useDispatch } from "react-redux";
+import { LOGOUT } from "../redux/userSlice";
 
 const Header = () => {
   const [dropdown, setDropdown] = useState(false);

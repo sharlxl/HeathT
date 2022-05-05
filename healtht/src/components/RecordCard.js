@@ -72,7 +72,6 @@ const RecordCard = (props) => {
         pain_score: editValues.pain_score,
       })
       .then((res) => {
-        // console.log(res.data);
         toast.success(res.data.message, {
           position: "top-left",
           autoClose: 5000,

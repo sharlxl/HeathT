@@ -28,7 +28,6 @@ const CondtionEntry = () => {
   const dispatch = useDispatch();
   const onSubmitCondition = (e) => {
     e.preventDefault();
-    // console.log(condition);
     dispatch(ADD_CONDTION({ condition }));
     axios
       .post(`http://localhost:5001/conditions/new`, {

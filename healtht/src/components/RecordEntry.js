@@ -86,7 +86,7 @@ const RecordEntry = () => {
           progress: undefined,
         });
       });
-    console.log(record);
+
     setRecord({
       date: new Date().toLocaleDateString(),
       time: new Date().toLocaleTimeString(),
@@ -96,7 +96,6 @@ const RecordEntry = () => {
       pain_score: 0,
       painDescription: "No Pain",
     });
-    console.log(record);
   };
   return (
     <>
