@@ -29,13 +29,13 @@ const Header = () => {
 
   return (
     <div className="bg-[rgba(40,213,188,1)] justify-between h-[3rem] flex sm:flex-col sm:h-full sm:w-[15rem] sm:justify-start">
-      <div className="flex">
+      <div className="flex sm:flex-col">
         <img
-          className="h-[3rem] sm:w-[80%] sm:self-center"
+          className="h-[3rem] sm:h-[5rem] sm:p-1.5 sm:self-center"
           src={logo2}
           alt="logo"
         />
-        <h1 className="text-3xl pl-5 pt-1.5 text-[#344B46]">
+        <h1 className="text-3xl sm:pt-5 pl-5 pt-1.5 text-[#344B46]">
           Hi, {styledName}
         </h1>
       </div>
